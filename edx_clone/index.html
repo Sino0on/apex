@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edX Clone - Accelerate Your Future</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Inline override to use the generated image */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.85) 0%, rgba(32, 10, 70, 0.85) 100%), url('hero_bg.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div style="display: flex; align-items: center;">
+                <a href="#" class="logo">
+                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 472 478"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M211.552 4.45888C157.331 12.3859 111.492 35.6569 74.3295 74.1239C-32.2806 184.479 -6.69086 367.373 126.065 443.883C141.985 453.058 153.015 457.725 173.341 463.887C194.448 470.286 206.205 472.623 224.702 474.097C244.928 475.709 268.295 474.037 289.387 469.467C305.522 465.971 331.322 455.188 350.102 444.092C352.98 442.391 355.764 441 356.289 441C356.859 441 357.243 447.855 357.243 458V475H410.63H464.017L464.013 343.75C464.01 231.717 463.788 211.109 462.505 203C455.793 160.58 438.901 122.179 412.585 89.5159C404.122 79.0099 385.81 60.8169 375.494 52.6649C348.027 30.9569 313.071 14.6339 278.756 7.49088C257.662 3.10088 229.528 1.83088 211.552 4.45888ZM210.055 96.5369C192.042 99.8619 172.591 107.853 156.732 118.445C147.01 124.938 131.136 140.294 123.222 150.861C111.402 166.644 102.076 187.562 97.6072 208.312C95.784 216.781 95.4118 221.705 95.4058 237.5C95.3989 254.788 95.6493 257.581 98.1869 268.5C104.882 297.31 117.052 319.508 137.128 339.533C174.024 376.333 226.175 389.028 275.852 373.302C315.856 360.638 349.715 327.369 364.193 286.5C382.803 233.97 370.175 175.461 331.797 136.401C312.712 116.977 290.383 104.365 263.453 97.7999C252.15 95.0439 222.004 94.3309 210.055 96.5369Z"
+                            fill="#FF6702"></path>
+                    </svg>
+                </a>
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="What do you want to learn?">
+                </div>
+                <nav class="nav-links">
+                    <a href="#" class="nav-item">Courses</a>
+                    <a href="#" class="nav-item">Programs</a>
+                    <a href="#" class="nav-item">Schools</a>
+                </nav>
+            </div>
+
+            <div class="header-actions">
+                <button class="btn btn-ghost">Sign In</button>
+                <button class="btn btn-primary">Register for Free</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Slider -->
+    <!-- Hero Section with Slider -->
+    <section class="hero">
+        <div class="hero-slider">
+            <!-- Slide 1 -->
+            <div class="slide active"
+                style="background-image: linear-gradient(135deg, rgba(10,25,30,0.85) 0%, rgba(5,45,40,0.85) 100%), url('hero_bg.png');">
+                <div class="slide-container">
+                    <!-- Left: Main Content -->
+                    <div class="slide-content-left">
+                        <div class="slide-badges">
+                            <span class="hero-badge"><i class="fas fa-star"></i> Best Value</span>
+                            <span class="hero-badge"><i class="far fa-calendar"></i> 2 - 12 months</span>
+                        </div>
+                        <h1>Become an expert</h1>
+                        <p>Programs combine multiple courses for a deeper learning experience to help you grow your
+                            skills.</p>
+                        <button class="slide-btn">Browse all programs</button>
+                    </div>
+
+                    <!-- Right: Quote -->
+                    <div class="slide-content-right">
+                        <div class="quote-block">
+                            <i class="fas fa-quote-left quote-icon-large"></i>
+                            "The program had passionate, knowledgeable instructors. The training materials were
+                            high-quality and the difficulty was just right."
+                            <span class="quote-author">- edX online learner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide"
+                style="background-image: linear-gradient(135deg, rgba(40,15,5,0.85) 0%, rgba(70,30,10,0.85) 100%), url('hero_bg_2.png');">
+                <div class="slide-container">
+                    <!-- Left: Main Content -->
+                    <div class="slide-content-left">
+                        <div class="slide-badges">
+                            <span class="hero-badge"><i class="fas fa-certificate"></i> Professional Cert</span>
+                            <span class="hero-badge"><i class="fas fa-rocket"></i> Career Boost</span>
+                        </div>
+                        <h1>Launch your career</h1>
+                        <p>Get job-ready with Professional Certificates from Google, IBM, and Meta. Start learning
+                            today.</p>
+                        <button class="slide-btn">Explore Certificates</button>
+                    </div>
+
+                    <!-- Right: Quote -->
+                    <div class="slide-content-right">
+                        <div class="quote-block">
+                            <i class="fas fa-quote-left quote-icon-large"></i>
+                            "I was able to switch careers into Data Science completely thanks to the foundational skills
+                            I learned here."
+                            <span class="quote-author">- Sarah, Data Scientist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation (Pill Style) -->
+            <div class="slider-nav">
+                <button class="slider-arrow" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dot active" onclick="goToSlide(0)"></div>
+                <div class="slider-dot" onclick="goToSlide(1)"></div>
+                <button class="slider-arrow" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Partner Logos -->
+    <div class="partners">
+        <div class="container">
+            <p
+                style="margin-bottom: 24px; font-weight: 600; color: #666; font-size: 0.9rem; text-transform: uppercase;">
+                Trusted by top-tier universities and companies</p>
+            <div class="partners-grid">
+                <!-- Using text placeholders styled to look like logos for speed/simplicity, 
+                     in a real scenario we'd use SVGs -->
+                <div class="partner-logo" style="font-weight: 900; font-family: serif; font-size: 1.5rem;">Harvard</div>
+                <div class="partner-logo" style="font-weight: 700; font-family: sans-serif; font-size: 1.5rem;">MIT
+                </div>
+                <div class="partner-logo" style="font-weight: 800; font-family: sans-serif; font-size: 1.5rem;">Berkeley
+                </div>
+                <div class="partner-logo" style="font-weight: 600; font-family: serif; font-size: 1.5rem;">Boston</div>
+                <div class="partner-logo" style="font-weight: 900; font-family: sans-serif; font-size: 1.5rem;">Google
+                </div>
+                <div class="partner-logo" style="font-weight: 700; font-family: sans-serif; font-size: 1.5rem;">
+                    Microsoft</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Courses Section -->
+    <main class="section-courses container">
+        <div class="container" style="margin-bottom: 40px;">
+            <h2 class="section-title" style="margin-bottom: 24px;">Trending on edX</h2>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <div class="tabs-list">
+                    <button class="tab-btn active" data-category="all" onclick="setActiveTab(this)">All</button>
+                    <button class="tab-btn" data-category="executive" onclick="setActiveTab(this)">Executive
+                        Education</button>
+                    <button class="tab-btn" data-category="course" onclick="setActiveTab(this)">Courses</button>
+                    <button class="tab-btn" data-category="certificate"
+                        onclick="setActiveTab(this)">Certificates</button>
+                    <button class="tab-btn" data-category="master" onclick="setActiveTab(this)">Master's
+                        Degrees</button>
+                </div>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="filter-pills">
+                <button class="filter-pill active" data-topic="all" onclick="togglePill(this)">Featured</button>
+                <button class="filter-pill" data-topic="ai" onclick="togglePill(this)">AI & Digital
+                    Transformation</button>
+                <button class="filter-pill" data-topic="sustainability"
+                    onclick="togglePill(this)">Sustainability</button>
+                <button class="filter-pill" data-topic="business" onclick="togglePill(this)">Business
+                    Management</button>
+                <button class="filter-pill" data-topic="data" onclick="togglePill(this)">Data Science</button>
+            </div>
+        </div>
+
+        <div class="course-grid">
+            <!-- Card 1 -->
+            <a href="course_detail.html">
+                <div class="course-card" data-category="certificate" data-topic="data">
+                    <div class="card-img"
+                        style="background-image: url('assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp');">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-partner">HarvardX</span>
+                        <h3 class="card-title">CS50's Introduction to Computer Science</h3>
+                        <p class="card-meta">Computer Science • Intermediate</p>
+                        <span class="badge">Professional Certificate</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 2 -->
+            <div class="course-card" data-category="course" data-topic="sustainability">
+                <div class="card-img"
+                    style="background-image: url('assets/img/courses/55ed505b-3080-49f0-8f68-15999d5c72a4-bb9a1cb04bb9.webp');">
+                </div>
+                <div class="card-body">
+                    <span class="card-partner">MITx</span>
+                    <h3 class="card-title">Introduction to Biology - The Secret of Life</h3>
+                    <p class="card-meta">Biology • Introductory</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="course-card" data-category="certificate" data-topic="ai">
+                <div class="card-img"
+                    style="background-image: url('assets/img/courses/fa8bacde-cdf0-4d76-a4a0-b2624abe3800-f1cd7a3d81f6.webp');">
+                </div>
+                <div class="card-body">
+                    <span class="card-partner">IBM</span>
+                    <h3 class="card-title">Python for Data Science, AI & Development</h3>
+                    <p class="card-meta">Data Science • Beginner</p>
+                    <span class="badge">Professional Certificate</span>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="course-card" data-category="certificate" data-topic="business">
+                <div class="card-img"
+                    style="background-image: url('assets/img/courses/fa8bacde-cdf0-4d76-a4a0-b2624abe3800-f1cd7a3d81f6.webp');">
+                </div>
+                <div class="card-body">
+                    <span class="card-partner">Google</span>
+                    <h3 class="card-title">Google Project Management: Professional Certificate</h3>
+                    <p class="card-meta">Business • Beginner</p>
+                    <span class="badge">Professional Certificate</span>
+                </div>
+            </div>
+
+            <!-- Additional Cards for Demo -->
+            <div class="course-card" data-category="master" data-topic="ai">
+                <div class="card-img"
+                    style="background-image: url('assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp');">
+                </div>
+                <div class="card-body">
+                    <span class="card-partner">UT Austin</span>
+                    <h3 class="card-title">Master of Science in Artificial Intelligence</h3>
+                    <p class="card-meta">Computer Science • Advanced</p>
+                    <span class="badge">Master's Degree</span>
+                </div>
+            </div>
+
+            <div class="course-card" data-category="executive" data-topic="business">
+                <div class="card-img"
+                    style="background-image: url('assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp');">
+                </div>
+                <div class="card-body">
+                    <span class="card-partner">Oxford</span>
+                    <h3 class="card-title">Oxford Executive Leadership Programme</h3>
+                    <p class="card-meta">Leadership • Advanced</p>
+                    <span class="badge">Executive Education</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Popular Topics Section -->
+    <section class="section-topics container" style="margin-top: 60px; margin-bottom: 60px;">
+        <h2 class="section-title" style="margin-bottom: 32px;">Popular topics</h2>
+        <div class="topics-grid">
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-brain topic-icon"></i>
+                <span class="topic-name">Artificial Intelligence</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-users-cog topic-icon"></i>
+                <span class="topic-name">Leadership</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-truck-loading topic-icon"></i>
+                <span class="topic-name">Supply Chain</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-code topic-icon"></i>
+                <span class="topic-name">Computer Programming</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-random topic-icon"></i>
+                <span class="topic-name">Probability</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fab fa-python topic-icon"></i>
+                <span class="topic-name">Python</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-laptop-code topic-icon"></i>
+                <span class="topic-name">Machine Learning</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-network-wired topic-icon"></i>
+                <span class="topic-name">Computer Science</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-pen-fancy topic-icon"></i>
+                <span class="topic-name">Writing</span>
+            </a>
+            <a href="category_detail.html" class="topic-card">
+                <i class="fas fa-chart-bar topic-icon"></i>
+                <span class="topic-name">Statistics</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Value Props -->
+    <section class="value-props">
+        <div class="container">
+            <div class="props-grid">
+                <div>
+                    <i class="fas fa-certificate prop-icon"></i>
+                    <h3>World-class Content</h3>
+                    <p style="opacity: 0.8; margin-top: 12px;">Learn from the best. Courses from top universities and
+                        industry leaders.</p>
+                </div>
+                <div>
+                    <i class="fas fa-briefcase prop-icon"></i>
+                    <h3>Career-ready Skills</h3>
+                    <p style="opacity: 0.8; margin-top: 12px;">Get the skills you need to advance your career or start a
+                        new one.</p>
+                </div>
+                <div>
+                    <i class="fas fa-globe prop-icon"></i>
+                    <h3>Global Community</h3>
+                    <p style="opacity: 0.8; margin-top: 12px;">Join millions of learners from around the world learning
+                        together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section-stats">
+        <div class="container">
+            <h2 style="margin-bottom: 48px; font-size: 2rem;">Our Global Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>160M+</h3>
+                    <p>Learners served</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5,200+</h3>
+                    <p>Courses available</p>
+                </div>
+                <div class="stat-item">
+                    <h3>250+</h3>
+                    <p>University partners</p>
+                </div>
+                <div class="stat-item">
+                    <h3>196</h3>
+                    <p>Countries represented</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">What Learners Say</h2>
+                    <p style="color: #666; margin-top: 8px;">Success stories from our community</p>
+                </div>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="testimonial-text">"This course was a game-changer for my career. I was able to transition
+                        into data science within 6 months."</p>
+                    <div class="user-profile">
+                        <div class="user-avatar"
+                            style="background-color: #ff9a9e; background-image: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);">
+                        </div>
+                        <div class="user-info">
+                            <h5>Sarah M.</h5>
+                            <span>Data Analyst</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="testimonial-text">"The flexibility of learning at my own pace allowed me to balance my
+                        studies with a full-time job."</p>
+                    <div class="user-profile">
+                        <div class="user-avatar"
+                            style="background-color: #a18cd1; background-image: linear-gradient(120deg, #a18cd1 0%, #fbc2eb 100%);">
+                        </div>
+                        <div class="user-info">
+                            <h5>James L.</h5>
+                            <span>Software Engineer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="testimonial-text">"Obtaining a professional certificate from a top university gave me the
+                        confidence to aim higher."</p>
+                    <div class="user-profile">
+                        <div class="user-avatar"
+                            style="background-color: #84fab0; background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);">
+                        </div>
+                        <div class="user-info">
+                            <h5>Elena R.</h5>
+                            <span>Product Manager</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section-cta">
+        <div class="container cta-content">
+            <h2 class="cta-title">Ready to start learning?</h2>
+            <p class="cta-desc">Join the millions of people who are transforming their lives through education.</p>
+            <div style="display: flex; gap: 16px; justify-content: center;">
+                <button class="btn btn-primary" style="padding: 14px 32px; font-size: 1.1rem;">Get Started for
+                    Free</button>
+                <button class="btn btn-outline" style="padding: 14px 32px; font-size: 1.1rem;">Explore Business
+                    Solutions</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="padding-right: 40px;">
+                    <a href="#" class="logo" style="display: block; margin-bottom: 24px;">edX</a>
+                    <p style="color: #666; font-size: 0.9rem;">As a global nonprofit, we're on a mission to transform
+                        education and make it accessible to everyone, everywhere.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>edX</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2024 edX LLC. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filtering and Tabs Logic
+        let currentCategory = 'all';
+        let currentTopic = 'all';
+
+        function setActiveTab(btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            currentCategory = btn.dataset.category;
+            filterCourses();
+        }
+
+        function togglePill(btn) {
+            document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            currentTopic = btn.dataset.topic;
+            filterCourses();
+        }
+
+        function filterCourses() {
+            const cards = document.querySelectorAll('.course-card');
+
+            cards.forEach(card => {
+                const cardCat = card.dataset.category;
+                const cardTopic = card.dataset.topic;
+
+                const matchCategory = currentCategory === 'all' || currentCategory === cardCat;
+                const matchTopic = currentTopic === 'all' || currentTopic === cardTopic;
+
+                if (matchCategory && matchTopic) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetInterval();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+            resetInterval();
+        }
+
+        function updateSlider() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000); // 5 seconds
+        }
+
+        // Check if slides exist before starting
+        if (slides.length > 0) {
+            resetInterval();
+        }
+    </script>
+</body>
+
+</html>

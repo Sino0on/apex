@@ -1,0 +1,1103 @@
+:root {
+    /* Color System - Orange Brand Theme */
+    --primary-hue: 24;
+    --primary-sat: 100%;
+    --primary-light: 50%;
+    /* #ff6702 */
+
+    /* Using a dark neutral for the base to let the orange pop */
+    --brand-dark: #111111;
+    --brand-main: #ff6702;
+    --brand-light: #fff5f0;
+    /* Very light orange tint for backgrounds */
+
+    --accent-color: #ff6702;
+    /* Unified action color */
+    --accent-hover: #e05a00;
+
+    --text-main: #1a1a1a;
+    --text-muted: #666;
+    --text-light: #fff;
+
+    --bg-body: #ffffff;
+    --bg-surface: #f8f9fa;
+
+    /* Spacing */
+    --container-max: 1200px;
+    --header-height: 72px;
+
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text-main);
+    background-color: var(--bg-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Utilities */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--brand-dark);
+}
+
+.btn-ghost:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+header {
+    height: var(--header-height);
+    background: white;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--brand-dark);
+    letter-spacing: -0.5px;
+    margin-right: 48px;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    margin-right: auto;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.nav-item:hover {
+    color: var(--brand-main);
+}
+
+.header-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.search-bar {
+    display: none;
+    /* Hidden on mobile, show on desktop */
+    position: relative;
+    width: 300px;
+    margin-right: 24px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: #f8f9fa;
+}
+
+@media (min-width: 900px) {
+    .search-bar {
+        display: block;
+    }
+}
+
+/* Hero Section & Slider */
+.hero {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    height: 520px;
+    /* Specific height */
+    background-color: #10312b;
+    /* Dark Teal Base */
+    color: white;
+}
+
+.hero-slider {
+    height: 100%;
+    position: relative;
+    background-color: #10312b;
+    /* Ensure background matches */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    display: flex;
+    /* Flexbox for centering */
+    align-items: center;
+    /* Vertical Center */
+    /* Removed background-image to rely on the solid color or specific gradients if needed */
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.slide-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+}
+
+/* Left Column: Content */
+.slide-content-left {
+    z-index: 2;
+    padding-right: 20px;
+}
+
+.slide-badges {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.hero-badge {
+    background-color: #bbf0e7;
+    /* Light Mint/Turquoise */
+    color: #10312b;
+    /* Dark Teal Text */
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+}
+
+.hero-badge i {
+    font-size: 0.8rem;
+}
+
+.slide-content-left h1 {
+    font-family: "Georgia", "Times New Roman", serif;
+    /* Serif font for "Become an expert" look */
+    font-size: 4rem;
+    font-weight: 800;
+    /* Extra bold */
+    font-style: italic;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: white;
+}
+
+.slide-content-left p {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    max-width: 90%;
+    color: white;
+}
+
+.slide-btn {
+    background-color: #d23f00;
+    /* EdX Orange */
+    color: white;
+    padding: 14px 28px;
+    font-weight: 700;
+    border-radius: 4px;
+    /* Slightly rounded, almost square like ref */
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: var(--font-sans);
+}
+
+.slide-btn:hover {
+    background-color: #a53200;
+    /* Darker Orange */
+}
+
+/* Right Column: Quote */
+.slide-content-right {
+    position: relative;
+    z-index: 2;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.quote-block {
+    font-family: var(--font-sans);
+    font-size: 1.75rem;
+    /* Large quote text */
+    line-height: 1.3;
+    font-weight: 700;
+    color: white;
+}
+
+.quote-icon-large {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+    opacity: 1;
+    color: white;
+    /* White quote icon */
+}
+
+.quote-author {
+    display: block;
+    margin-top: 24px;
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* Slider Navigation (White Pill) */
+.slider-nav {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.slider-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1a1a1a;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    /* Grey inactive */
+    cursor: pointer;
+}
+
+.slider-dot.active {
+    background: #10312b;
+    /* Dark Teal active */
+    transform: scale(1.1);
+}
+
+/* Partner Logos */
+.partners {
+    padding: 40px 0;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.partners-grid {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    opacity: 0.6;
+    filter: grayscale(100%);
+}
+
+.partner-logo {
+    height: 32px;
+    width: auto;
+}
+
+/* Popular Topics Grid */
+.topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    /* Responsive grid */
+    gap: 24px;
+}
+
+.topic-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #f8f9fa;
+    /* Light background */
+    padding: 32px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--brand-dark);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.topic-card:hover {
+    background: white;
+    box-shadow: var(--shadow-md);
+    border-color: #eee;
+    transform: translateY(-4px);
+}
+
+.topic-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    color: var(--brand-dark);
+    opacity: 0.8;
+}
+
+.topic-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.section-courses {
+    padding: 80px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+}
+
+.course-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-img {
+    height: 160px;
+    background-color: #ddd;
+    background-position: center;
+    background-size: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-partner {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    color: var(--brand-dark);
+}
+
+.card-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #eee;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+/* Value Props */
+.value-props {
+    padding: 80px 0;
+    background: var(--brand-dark);
+    color: white;
+}
+
+.props-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    text-align: center;
+}
+
+.prop-icon {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+    color: var(--brand-main);
+    /* Pop color */
+}
+
+/* Footer */
+footer {
+    background: #fff;
+    padding: 80px 0 40px;
+    border-top: 1px solid #eee;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 60px;
+}
+
+.footer-col h4 {
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--brand-dark);
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 12px;
+}
+
+.footer-col a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+/* Filters & Tabs */
+.tabs-container {
+    margin-bottom: 32px;
+    background: white;
+    border-radius: 8px 8px 0 0;
+    /* Suggested by card-like look */
+}
+
+.tabs-list {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #fcfcfc;
+    /* Slight contrast for the bar track */
+    padding: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.tab-btn {
+    padding: 16px 24px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: #10312b;
+    /* Dark Teal */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.tab-btn:hover {
+    background-color: rgba(16, 49, 43, 0.05);
+}
+
+.tab-btn.active {
+    background-color: #10312b;
+    color: white;
+}
+
+/* For the pill-style sub-filters */
+.filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding-top: 24px;
+}
+
+.filter-pill {
+    padding: 8px 16px;
+    background: #e8ebe9;
+    /* Light greenish-grey */
+    border: 1px solid #10312b;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #10312b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+    background: #d0d6d3;
+}
+
+.filter-pill.active {
+    background: #10312b;
+    color: white;
+}
+
+/* Topic Page Styles */
+.topic-hero {
+    background-color: #f0f4f8;
+    /* Softer, slightly blue-tinted grey */
+    padding: 80px 0;
+    border-bottom: 1px solid #dcdcdc;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add a subtle texture or pattern if desired, or keep clean */
+
+.breadcrumbs {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    font-weight: 500;
+}
+
+.breadcrumbs a {
+    color: var(--brand-dark);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    color: var(--brand-main);
+    text-decoration: underline;
+}
+
+.breadcrumbs .separator {
+    margin: 0 10px;
+    color: #ccc;
+}
+
+.topic-title {
+    font-family: "Georgia", serif;
+    /* Matching the serif headlines */
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 24px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.topic-lead {
+    font-family: var(--font-sans);
+    font-size: 1.35rem;
+    line-height: 1.6;
+    max-width: 750px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.btn-large {
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    /* Matching the square look */
+}
+
+/* Content Section */
+.section-topic-content {
+    padding: 80px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.content-block {
+    margin-bottom: 60px;
+}
+
+.content-block h2 {
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 24px;
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.content-block h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--brand-main);
+    /* Orange accent */
+}
+
+.content-block p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    /* Better readability */
+    color: #444;
+}
+
+/* Course Grid enhancements for this page */
+.section-courses .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+
+/* Stats Section */
+.section-stats {
+    padding: 80px 0;
+    background: var(--brand-dark);
+    color: white;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+.stat-item h3 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--brand-main);
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, white 0%, var(--brand-main) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-item p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Testimonials */
+.section-testimonials {
+    padding: 100px 0;
+    background: var(--bg-surface);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.quote-icon {
+    font-size: 2rem;
+    color: var(--brand-light);
+    margin-bottom: 24px;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-style: italic;
+    color: #444;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ccc;
+    /* Placeholder */
+    background-size: cover;
+}
+
+.user-info h5 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.user-info span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* CTA Section */
+.section-cta {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.cta-desc {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+/* Course Detail Page Styles */
+.course-page-wrapper {
+    background-color: white;
+    padding-bottom: 80px;
+}
+
+.course-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .course-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.course-header {
+    margin-bottom: 40px;
+}
+
+.course-title {
+    font-family: "Georgia", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.course-short-desc {
+    font-size: 1.2rem;
+    color: #444;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+.course-partners-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: var(--brand-dark);
+}
+
+.partner-logo-small {
+    height: 40px;
+    width: auto;
+}
+
+.course-section {
+    margin-bottom: 48px;
+}
+
+.course-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 24px;
+}
+
+.learning-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.learning-list li {
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.learning-list i {
+    color: var(--brand-dark);
+    margin-top: 4px;
+}
+
+/* Syllabus */
+.syllabus-item {
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
+}
+
+.syllabus-item:last-child {
+    border-bottom: none;
+}
+
+.week-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    color: var(--brand-dark);
+}
+
+.week-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Instructors */
+.instructor-card {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.instructor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
+}
+
+.instructor-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    color: var(--brand-dark);
+}
+
+.instructor-info span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.institution {
+    font-weight: 600;
+    color: var(--brand-dark);
+    font-size: 0.9rem;
+}
+
+/* Sidebar */
+.course-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.sticky-sidebar-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sidebar-media {
+    height: 200px;
+    background-color: #000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.media-placeholder {
+    color: white;
+    text-align: center;
+}
+
+.media-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.sidebar-content {
+    padding: 24px;
+}
+
+.sidebar-price {
+    margin-bottom: 24px;
+}
+
+.price-free {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    display: block;
+}
+
+.price-label, .price-optional {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: block;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+.enroll-count {
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.stat-row i {
+    width: 20px;
+    text-align: center;
+    color: var(--text-muted);
+}
