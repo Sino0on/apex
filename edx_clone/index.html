@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>edX Clone - Accelerate Your Future</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -131,18 +133,12 @@
                 style="margin-bottom: 24px; font-weight: 600; color: #666; font-size: 0.9rem; text-transform: uppercase;">
                 Trusted by top-tier universities and companies</p>
             <div class="partners-grid">
-                <!-- Using text placeholders styled to look like logos for speed/simplicity, 
-                     in a real scenario we'd use SVGs -->
-                <div class="partner-logo" style="font-weight: 900; font-family: serif; font-size: 1.5rem;">Harvard</div>
-                <div class="partner-logo" style="font-weight: 700; font-family: sans-serif; font-size: 1.5rem;">MIT
-                </div>
-                <div class="partner-logo" style="font-weight: 800; font-family: sans-serif; font-size: 1.5rem;">Berkeley
-                </div>
-                <div class="partner-logo" style="font-weight: 600; font-family: serif; font-size: 1.5rem;">Boston</div>
-                <div class="partner-logo" style="font-weight: 900; font-family: sans-serif; font-size: 1.5rem;">Google
-                </div>
-                <div class="partner-logo" style="font-weight: 700; font-family: sans-serif; font-size: 1.5rem;">
-                    Microsoft</div>
+                <img src="assets/logos/logo1.webp" alt="Partner 1" class="partner-logo">
+                <img src="assets/logos/logo2.webp" alt="Partner 2" class="partner-logo">
+                <img src="assets/logos/logo3.webp" alt="Partner 3" class="partner-logo">
+                <img src="assets/logos/logo4.webp" alt="Partner 4" class="partner-logo">
+                <img src="assets/logos/logo5.webp" alt="Partner 5" class="partner-logo">
+                <img src="assets/logos/logo6.webp" alt="Partner 6" class="partner-logo">
             </div>
         </div>
     </div>
@@ -354,6 +350,102 @@
                     <h3>196</h3>
                     <p>Countries represented</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Formats Section -->
+    <section class="section-learning-formats">
+        <div class="container">
+            <div class="formats-header">
+                <h2 class="formats-title">Find your perfect learning format</h2>
+                <p class="formats-subtitle">edX offers many ways to learn and grow your skills. Choose the format that
+                    works best for you.</p>
+            </div>
+
+            <div class="formats-grid">
+                <!-- Individual Courses -->
+                <div class="format-card format-beige">
+                    <div class="format-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="format-name">Individual courses</h3>
+                    <p class="format-desc">Learn a new skill anywhere, anytime.</p>
+
+                    <ul class="format-features">
+                        <li><i class="far fa-clock"></i> 2-6 weeks</li>
+                        <li><i class="fas fa-certificate"></i> Earn a verified certificate</li>
+                        <li><i class="fas fa-chart-line"></i> Upskill quickly</li>
+                    </ul>
+
+                    <a href="#" class="btn-format">Explore courses</a>
+                </div>
+
+                <!-- Certificate Programs -->
+                <div class="format-card format-light">
+                    <div class="format-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="format-name">Certificate programs</h3>
+                    <p class="format-desc">Combine multiple courses into a well-rounded program.</p>
+
+                    <ul class="format-features">
+                        <li><i class="far fa-clock"></i> 8-12 weeks</li>
+                        <li><i class="fas fa-certificate"></i> Earn multiple certificates</li>
+                        <li><i class="fas fa-chart-line"></i> Upskill on a deeper level</li>
+                    </ul>
+
+                    <a href="#" class="btn-format">Explore programs</a>
+                </div>
+
+                <!-- Executive Education -->
+                <div class="format-card format-teal">
+                    <div class="format-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="format-name">Executive Education</h3>
+                    <p class="format-desc">Deepen your expertise with classes designed by experts.</p>
+
+                    <ul class="format-features">
+                        <li><i class="far fa-clock"></i> 6-20+ weeks</li>
+                        <li><i class="fas fa-certificate"></i> Earn credentials</li>
+                        <li><i class="fas fa-chart-line"></i> Grow career critical skills</li>
+                    </ul>
+
+                    <a href="#" class="btn-format">Explore Executive Education</a>
+                </div>
+
+                <!-- Online Degrees -->
+                <div class="format-card format-light">
+                    <div class="format-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="format-name">Online degrees</h3>
+                    <p class="format-desc">Earn your degree from a prestigious university.</p>
+
+                    <ul class="format-features">
+                        <li><i class="far fa-clock"></i> 1.5-3 years</li>
+                        <li><i class="fas fa-certificate"></i> Earn a degree</li>
+                        <li><i class="fas fa-chart-line"></i> Become an expert</li>
+                    </ul>
+
+                    <a href="#" class="btn-format">Explore degrees</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner Section -->
+    <section class="promo-banner">
+        <div class="promo-content">
+            <div class="promo-text">
+                <h2 class="promo-title">We've extended our New Year savings!</h2>
+                <p class="promo-description">Toast to progress and <strong>save 15%</strong> through January 20 with
+                    code <strong>NY2026EXT</strong>.</p>
+                <a href="#" class="btn btn-primary btn-promo">Learn more</a>
+            </div>
+            <div class="promo-image">
+                <img src="assets/img/banners/banner1.webp" alt="New Year Savings">
             </div>
         </div>
     </section>

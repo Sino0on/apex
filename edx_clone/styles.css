@@ -876,6 +876,7 @@ footer {
     margin-bottom: 40px;
     opacity: 0.9;
 }
+
 /* Course Detail Page Styles */
 .course-page-wrapper {
     background-color: white;
@@ -1025,7 +1026,7 @@ footer {
 .sticky-sidebar-card {
     background: white;
     border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -1066,7 +1067,8 @@ footer {
     display: block;
 }
 
-.price-label, .price-optional {
+.price-label,
+.price-optional {
     font-size: 0.9rem;
     color: var(--text-muted);
     display: block;
@@ -1100,4 +1102,218 @@ footer {
     width: 20px;
     text-align: center;
     color: var(--text-muted);
+}
+
+/* Learning Formats Section */
+.section-learning-formats {
+    padding: 100px 0;
+    background: white;
+}
+
+.formats-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.formats-title {
+    font-family: "Georgia", serif;
+    font-size: 2.75rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--brand-dark);
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.formats-subtitle {
+    font-size: 1.15rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.formats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.format-card {
+    padding: 32px 24px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.format-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Card color variants */
+.format-beige {
+    background-color: #f5f1e8;
+}
+
+.format-light {
+    background-color: #f8f9fa;
+}
+
+.format-teal {
+    background-color: #d4e8e5;
+}
+
+.format-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--brand-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.format-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.format-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 12px;
+}
+
+.format-desc {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.format-features {
+    list-style: none;
+    margin-bottom: 28px;
+    flex-grow: 1;
+}
+
+.format-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.format-features i {
+    width: 16px;
+    color: var(--brand-dark);
+}
+
+.btn-format {
+    background-color: var(--brand-dark);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    transition: background-color 0.2s;
+    display: inline-block;
+}
+
+.btn-format:hover {
+    background-color: #000;
+}
+
+/* Promo Banner Section */
+.promo-banner {
+    background-color: hsl(186.98 100% 8.43%);
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(255, 103, 2, 0.15) 0%,),
+        radial-gradient(circle at 80% 50%, rgba(255, 103, 2, 0.1) 0%, );
+    padding: 0;
+    overflow: hidden;
+}
+
+.promo-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 400px;
+}
+
+.promo-text {
+    padding: 60px 80px 60px 60px;
+    color: white;
+}
+
+.promo-title {
+    font-family: "Georgia", serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: white;
+}
+
+.promo-description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.promo-description strong {
+    color: white;
+    font-weight: 700;
+}
+
+.btn-promo {
+    background-color: var(--brand-main);
+    padding: 14px 32px;
+    font-size: 1.1rem;
+}
+
+.btn-promo:hover {
+    background-color: #e05a00;
+}
+
+.promo-image {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 900px) {
+    .promo-content {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-text {
+        padding: 40px 24px;
+    }
+
+    .promo-title {
+        font-size: 2.5rem;
+    }
+
+    .promo-image {
+        height: 300px;
+    }
 }
