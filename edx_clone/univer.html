@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Hospitality Management - edX Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Georgia:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Top Banner -->
+    <div class="top-banner" id="topBanner">
+        <div class="container banner-inner">
+            <p class="banner-text">
+                <strong>Commemorate the International Day of Education.</strong> Get 15% off until February 5 with code
+                DAYOFED2026. <a href="#" class="banner-link">Learn more.</a>
+            </p>
+            <button class="banner-close" onclick="closeBanner()" aria-label="Close banner">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div style="display: flex; align-items: center;">
+                <!-- Burger Menu Button -->
+                <button class="burger-btn" id="burgerBtn" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <a href="index.html" class="logo">
+                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 472 478"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M211.552 4.45888C157.331 12.3859 111.492 35.6569 74.3295 74.1239C-32.2806 184.479 -6.69086 367.373 126.065 443.883C141.985 453.058 153.015 457.725 173.341 463.887C194.448 470.286 206.205 472.623 224.702 474.097C244.928 475.709 268.295 474.037 289.387 469.467C305.522 465.971 331.322 455.188 350.102 444.092C352.98 442.391 355.764 441 356.289 441C356.859 441 357.243 447.855 357.243 458V475H410.63H464.017L464.013 343.75C464.01 231.717 463.788 211.109 462.505 203C455.793 160.58 438.901 122.179 412.585 89.5159C404.122 79.0099 385.81 60.8169 375.494 52.6649C348.027 30.9569 313.071 14.6339 278.756 7.49088C257.662 3.10088 229.528 1.83088 211.552 4.45888ZM210.055 96.5369C192.042 99.8619 172.591 107.853 156.732 118.445C147.01 124.938 131.136 140.294 123.222 150.861C111.402 166.644 102.076 187.562 97.6072 208.312C95.784 216.781 95.4118 221.705 95.4058 237.5C95.3989 254.788 95.6493 257.581 98.1869 268.5C104.882 297.31 117.052 319.508 137.128 339.533C174.024 376.333 226.175 389.028 275.852 373.302C315.856 360.638 349.715 327.369 364.193 286.5C382.803 233.97 370.175 175.461 331.797 136.401C312.712 116.977 290.383 104.365 263.453 97.7999C252.15 95.0439 222.004 94.3309 210.055 96.5369Z"
+                            fill="#FF6702"></path>
+                    </svg>
+                </a>
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="What do you want to learn?">
+                </div>
+                <nav class="nav-links">
+                    <a href="#" class="nav-item">Apply</a>
+                    <a href="#" class="nav-item">Our offices</a>
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-item nav-dropdown-toggle">
+                            Enquire <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="nav-dropdown-menu">
+                            <a href="#" class="nav-dropdown-item">Request Information</a>
+                            <a href="#" class="nav-dropdown-item">Book Consultation</a>
+                            <a href="#" class="nav-dropdown-item">WhatsApp Contact</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar (Hidden) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <!-- Sidebar content same as index.html (omitted for brevity in this step, but good to have) -->
+        <div class="sidebar-header">
+            <h2>Menu</h2>
+            <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Univer Hero Section -->
+    <section class="univer-hero">
+        <div class="container univer-hero-inner">
+            <!-- Left Side Content -->
+            <div class="univer-content">
+                <nav class="univer-breadcrumbs">
+                    <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i>
+                    <a href="#">Masters</a> <i class="fas fa-chevron-right"></i>
+                    <a href="#">MicroMasters</a> <i class="fas fa-chevron-right"></i>
+                    <span>International Hospitality Management</span>
+                </nav>
+
+                <div class="univer-badges">
+                    <img src="assets/logos/logo1.webp" alt="Hong Kong Polytechnic University" class="univer-logo">
+                    <div class="verified-badge">
+                        <i class="fas fa-certificate"></i> HKPolyUx verified
+                    </div>
+                </div>
+
+                <h1 class="univer-title">International Hospitality Management</h1>
+
+                <div class="course-badges">
+                    <div class="course-badge">
+                        <i class="fas fa-tachometer-alt"></i> Intermediate
+                    </div>
+                    <div class="course-badge">
+                        <i class="fas fa-user-clock"></i> Instructor-paced
+                    </div>
+                    <div class="course-badge">
+                        <i class="far fa-calendar-alt"></i> 32 weeks
+                    </div>
+                    <div class="course-badge">
+                        <i class="fas fa-award"></i> Earn a certificate
+                    </div>
+                </div>
+
+                <div class="course-stats">
+                    <a href="#" class="stats-link">4 courses</a>
+                    <span class="stats-separator">,</span>
+                    <span>8 months</span>
+                </div>
+
+                <div class="email-consent">
+                    <label class="consent-label">
+                        <input type="checkbox">
+                        I would like to receive email from HKPolyUx and learn about other offerings related to
+                        International Hospitality Management.
+                    </label>
+                </div>
+            </div>
+
+            <!-- Right Side Card -->
+            <div class="univer-card">
+                <div class="card-dates">
+                    <h3 class="date-title">Next course Started Jan 09</h3>
+                    <p class="date-subtitle">Ends Apr 02</p>
+                </div>
+                <button class="btn btn-primary btn-block">Advance your career</button>
+                <div class="learners-count">
+                    <strong>23,202</strong> learners enrolled
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Backed By Section -->
+    <section class="section-backed">
+        <div class="container">
+            <h2 class="backed-title">Backed by academic excellence and industry recognition</h2>
+            <div class="backed-grid">
+                <!-- Card 1 -->
+                <div class="backed-card">
+                    <div class="backed-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>School-certified</h3>
+                    <p>Earn a verified certificate from The Hong Kong Polytechnic University.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="backed-card">
+                    <div class="backed-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Proven career growth</h3>
+                    <p>Learners report more career opportunities with a certificate.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="backed-card">
+                    <div class="backed-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Industry-recognized</h3>
+                    <p>Certificates are accepted by top employers worldwide.</p>
+                </div>
+            </div>
+
+            <div class="skills-container">
+                <h2 class="skills-title">Grow these skills</h2>
+                <div class="skills-list">
+                    <span class="skill-tag">Hospitality Management</span>
+                    <span class="skill-tag">Integrated Marketing Communications</span>
+                    <span class="skill-tag">Loyalty Programs</span>
+                    <span class="skill-tag">Marketing</span>
+                    <span class="skill-tag">Selling Techniques</span>
+                    <span class="skill-tag">Tourism</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Overview Section -->
+    <section class="section-overview">
+        <div class="container overview-inner">
+            <!-- Left: Text Content -->
+            <div class="overview-content">
+                <h2 class="overview-title">Program overview</h2>
+                <div class="overview-text-container" id="overviewContainer">
+                    <div class="overview-text">
+                        <p>The MBA at International American University is a postgraduate business degree designed to
+                            prepare students for leadership roles in middle and upper-level management. It builds
+                            advanced competencies in strategic thinking, analytical decision-making, and understanding
+                            of complex business environments — particularly with a global perspective.
+                            Students graduating from this program are equipped to lead in diverse business functions
+                            such as finance, marketing, operations, human resources, and strategic management, with
+                            ethical and analytical skills suited for dynamic organizational contexts.</p>
+
+                        <p>Upon Completion, Graduates Will Be Able To:</p>
+
+                        <p>Demonstrate advanced strategic thinking and analytical decision-making in complex business
+                            environments</p>
+
+
+                        <p>Lead and manage teams effectively across diverse business functions</p>
+
+
+                        <p>Apply global business perspectives to organizational challenges and opportunities</p>
+
+
+                        <p>Integrate ethical reasoning into leadership and managerial decisions</p>
+                    </div>
+                    <div class="overview-fade" id="overviewFade"></div>
+                </div>
+                <button class="show-more-link" id="showMoreBtn" onclick="toggleOverview()">Show More</button>
+            </div>
+
+            <!-- Right: Video Placeholder -->
+            <div class="overview-video">
+                <div class="video-card">
+                    <button class="play-btn">
+                        <i class="fas fa-play-circle"></i> Play Video
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ignite Banner -->
+    <section class="section-ignite">
+        <div class="container">
+            <div class="ignite-banner">
+                <div class="ignite-content">
+                    <h3>🔥 Ignite your career with up to 15% off!</h3>
+                    <p>Learn new skills and make big moves for your career. Get up to 15% off with code DAYOFED2026. <i
+                            class="far fa-question-circle"></i></p>
+                </div>
+                <button class="ignite-btn">Advance your career</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details Grid -->
+    <section class="section-details">
+        <div class="container">
+            <div class="details-grid">
+                <div class="detail-item">
+                    <h4>Language</h4>
+                    <p>English</p>
+                </div>
+                <div class="detail-item spacer"></div> <!-- Empty cell for layout -->
+                <div class="detail-item">
+                    <h4>Transcripts</h4>
+                    <p>English &nbsp; 中文</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Prerequisites</h4>
+                    <p>None</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Section -->
+    <section class="section-certificate">
+        <div class="container">
+            <div class="certificate-card-large">
+                <div class="cert-content">
+                    <h2>Earn a school-verified certificate</h2>
+
+                    <div class="cert-feature">
+                        <div class="cert-icon-box">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h4>Increase your career opportunities</h4>
+                            <p>84% of learners report more opportunities after earning their certificate.</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-feature">
+                        <div class="cert-icon-box">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h4>Show off your hard work and dedication</h4>
+                            <p>You’re learning from <strong>HKPolyUx</strong>! That’s a big deal. Let others know about
+                                your achievements.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cert-image">
+                    <img src="assets/img/certificate_mockup.png" alt="Certificate and Student"
+                        onerror="this.src='https://placehold.co/500x350/e0e0e0/333?text=Certificate+Preview'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors Section -->
+    <section class="section-instructors">
+        <div class="container">
+            <h2 class="instructors-title">Meet the instructors</h2>
+            <div class="instructor-card">
+                <img src="assets/img/instructor_ada.png" alt="Ada Lo, Ph.D." class="instructor-img"
+                    onerror="this.src='https://placehold.co/80x80/333/fff?text=AL'">
+                <div class="instructor-info">
+                    <h3>Ada Lo, Ph.D.</h3>
+                    <p>Associate Professor at The Hong Kong Polytechnic University</p>
+                </div>
+                <img src="assets/logos/logo1.webp" alt="PolyU" class="instructor-uni-logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Deeper Learning Section -->
+    <section class="section-deeper-learning">
+        <div class="container">
+            <div class="deeper-learning-card">
+                <div class="deeper-header">
+                    <h3>📚 Want a deeper learning experience?</h3>
+                    <p>Advance your career with recognized credentials you can earn anytime, anywhere</p>
+                </div>
+
+                <div class="program-card-horizontal">
+                    <div class="program-card-header">
+                        <span class="micromasters-badge"><i class="fas fa-graduation-cap"></i> MicroMasters</span>
+                        <h4>International Hospitality Management</h4>
+                    </div>
+                    <div class="program-card-body">
+                        <div class="program-info">
+                            <span><i class="fas fa-desktop"></i> 4 courses</span>
+                            <span><i class="fas fa-tachometer-alt"></i> Instructor-Paced</span>
+                        </div>
+                        <div class="program-pricing">
+                            <span class="current-price">$1,000.80</span>
+                            <span class="original-price">$1,112</span>
+                            <button class="btn btn-dark-teal">Learn more</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-testimonials">
+        <div class="container">
+            <h2 class="section-title">Hear what other learners have to say</h2>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">"Living in this explosion of information — it's hugely rewarding to see
+                        it 'democratized' in this way."</p>
+                    <div class="testimonial-user">
+                        <img src="assets/img/user1.png" alt="Kathleen B."
+                            onerror="this.src='https://placehold.co/50x50/333/fff?text=KB'">
+                        <div class="user-info">
+                            <h5>Kathleen B.</h5>
+                            <span>New Hampshire</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">"edX has enriched my life. I have truly found my passion, and now I am
+                        determined to pursue my career as an electrical engineer after I go to college."</p>
+                    <a href="#" class="read-more-link">Show More</a>
+                    <div class="testimonial-user">
+                        <img src="assets/img/user2.png" alt="Kyung B."
+                            onerror="this.src='https://placehold.co/50x50/333/fff?text=KB'">
+                        <div class="user-info">
+                            <h5>Kyung B.</h5>
+                            <span>Maryland</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">"Even though I have practical education and working experience, the
+                        course gave me challenging concepts and new perspectives."</p>
+                    <a href="#" class="read-more-link">Show More</a>
+                    <div class="testimonial-user">
+                        <img src="assets/img/user3.png" alt="Francisco R."
+                            onerror="this.src='https://placehold.co/50x50/333/fff?text=FR'">
+                        <div class="user-info">
+                            <h5>Francisco R.</h5>
+                            <span>Spain</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation dots/arrows (Visual only) -->
+            <div class="testimonial-nav">
+                <button class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
+                <span class="nav-dot active"></span>
+                <span class="nav-dot"></span>
+                <button class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="read-more-link" style="text-decoration: underline; color: #3e504e;">Read more from
+                    other learners</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Course Summary Section -->
+    <section class="section-next-course">
+        <div class="container">
+            <h2 class="section-title-center">Next course Started Jan 09</h2>
+            <p class="section-subtitle">Ends Apr 02</p>
+            <p class="learners-count-center"><strong>23,202</strong> learners enrolled</p>
+
+            <div class="cta-buttons-center">
+                <button class="btn btn-primary-lg">Advance your career</button>
+                <button class="btn btn-outline-lg">Audit course</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="section-partnership">
+        <div class="container partnership-inner">
+            <div class="partnership-logos">
+                <img src="assets/logos/logo1.webp" alt="Hong Kong Polytechnic University" class="partner-logo">
+                <div class="logo-divider"></div>
+                <img src="assets/img/edx_logo_black.png" alt="edX" class="partner-logo-edx"
+                    onerror="this.src='https://placehold.co/100x50/fff/000?text=edX'">
+            </div>
+            <div class="partnership-text">
+                <h3>A powerful partnership</h3>
+                <p>edX partners with prestigious institutions like <strong>The Hong Kong Polytechnic University</strong>
+                    that share our commitment to innovation and excellence in teaching, learning, and skills
+                    development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share Section -->
+    <section class="section-share">
+        <div class="container">
+            <h3 class="share-title">Share this course</h3>
+            <div class="share-icons">
+                <a href="#" class="share-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="share-icon"><i class="fab fa-twitter"></i></a>
+                <!-- Using Twitter icon for X as FA free might not have X yet, or use text -->
+                <a href="#" class="share-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="share-icon"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 edX Clone. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scripts for burger menu matching index.html
+        const burgerBtn = document.getElementById('burgerBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const sidebarClose = document.getElementById('sidebarClose');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+        }
+
+        burgerBtn.addEventListener('click', toggleSidebar);
+        sidebarClose.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        function closeBanner() {
+            document.getElementById('topBanner').style.display = 'none';
+            document.documentElement.style.setProperty('--banner-height', '0px');
+        }
+
+        function toggleOverview() {
+            const container = document.getElementById('overviewContainer');
+            const btn = document.getElementById('showMoreBtn');
+            const fade = document.getElementById('overviewFade');
+
+            container.classList.toggle('expanded');
+
+            if (container.classList.contains('expanded')) {
+                btn.textContent = 'Show Less';
+                fade.style.opacity = '0';
+            } else {
+                btn.textContent = 'Show More';
+                fade.style.opacity = '1';
+            }
+        }
+    </script>
+</body>
+
+</html>
