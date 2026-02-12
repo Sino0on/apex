@@ -1,0 +1,122 @@
+[
+    {
+        "model": "main.university",
+        "pk": 1,
+        "fields": {
+            "title": "KINGSTON INTERNATIONAL COLLEGE",
+            "logo": "assets/img/courses/fa8bacde-cdf0-4d76-a4a0-b2624abe3800-f1cd7a3d81f6.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Diploma in Hospitality and Tourism Management (E-Learning)",
+            "created_at": "2026-02-12T14:19:47.203394",
+            "updated_at": "2026-02-12T14:19:47.203435"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 2,
+        "fields": {
+            "title": "KINGSTON INTERNATIONAL COLLEGE",
+            "logo": "assets/img/courses/fa8bacde-cdf0-4d76-a4a0-b2624abe3800-f1cd7a3d81f6.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Diploma in Business and Sales Management (E-Learning)",
+            "created_at": "2026-02-12T14:19:47.203447",
+            "updated_at": "2026-02-12T14:19:47.203449"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 3,
+        "fields": {
+            "title": "European City University",
+            "logo": "assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Specialist Diploma in Events Management",
+            "created_at": "2026-02-12T14:19:47.203456",
+            "updated_at": "2026-02-12T14:19:47.203457"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 4,
+        "fields": {
+            "title": "International American University",
+            "logo": "assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Master of Business Administration",
+            "created_at": "2026-02-12T14:19:47.203464",
+            "updated_at": "2026-02-12T14:19:47.203465"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 5,
+        "fields": {
+            "title": "Insan College",
+            "logo": "assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "LCCI Diploma in Business Studies",
+            "created_at": "2026-02-12T14:19:47.203473",
+            "updated_at": "2026-02-12T14:19:47.203474"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 6,
+        "fields": {
+            "title": "Kingston International College",
+            "logo": "assets/img/courses/55ed505b-3080-49f0-8f68-15999d5c72a4-bb9a1cb04bb9.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Diploma in Hospitality and tourism management",
+            "created_at": "2026-02-12T14:19:47.203481",
+            "updated_at": "2026-02-12T14:19:47.203482"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 7,
+        "fields": {
+            "title": "KINGSTON INTERNATIONAL COLLEGE",
+            "logo": "assets/img/courses/fa8bacde-cdf0-4d76-a4a0-b2624abe3800-f1cd7a3d81f6.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Postgraduate Diploma in Business Management",
+            "created_at": "2026-02-12T14:19:47.203489",
+            "updated_at": "2026-02-12T14:19:47.203489"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 8,
+        "fields": {
+            "title": "KINGSTON INTERNATIONAL COLLEGE",
+            "logo": "assets/img/courses/fa8bacde-cdf0-4d76-a4a0-b2624abe3800-f1cd7a3d81f6.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Postgraduate Diploma in Business Management (E-Learning)",
+            "created_at": "2026-02-12T14:19:47.203497",
+            "updated_at": "2026-02-12T14:19:47.203498"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 9,
+        "fields": {
+            "title": "Insan College",
+            "logo": "assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Diploma in Business Analytics",
+            "created_at": "2026-02-12T14:19:47.203504",
+            "updated_at": "2026-02-12T14:19:47.203505"
+        }
+    },
+    {
+        "model": "main.university",
+        "pk": 10,
+        "fields": {
+            "title": "International College of Creative Arts Technology",
+            "logo": "assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "mini_description": "Diploma in Audio Production",
+            "created_at": "2026-02-12T14:19:47.203512",
+            "updated_at": "2026-02-12T14:19:47.203513"
+        }
+    }
+]

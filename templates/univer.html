@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Hospitality Management - edX Clone</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>{{ university.title }}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +44,7 @@
                     <span></span>
                 </button>
 
-                <a href="index.html" class="logo">
+                <a href="/" class="logo">
                     <svg class="" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 472 478"
                         fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -93,17 +94,17 @@
                     <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i>
                     <a href="#">Masters</a> <i class="fas fa-chevron-right"></i>
                     <a href="#">MicroMasters</a> <i class="fas fa-chevron-right"></i>
-                    <span>International Hospitality Management</span>
+                    <span>{{ university.title }}</span>
                 </nav>
 
                 <div class="univer-badges">
-                    <img src="assets/logos/logo1.webp" alt="Hong Kong Polytechnic University" class="univer-logo">
+                    <img src="{{ university.logo.url }}" alt="{{ university.title }}" class="univer-logo">
                     <div class="verified-badge">
                         <i class="fas fa-certificate"></i> HKPolyUx verified
                     </div>
                 </div>
 
-                <h1 class="univer-title">International Hospitality Management</h1>
+                <h1 class="univer-title">{{ university.title }}</h1>
 
                 <div class="course-badges">
                     <div class="course-badge">
@@ -204,27 +205,7 @@
                 <h2 class="overview-title">Program overview</h2>
                 <div class="overview-text-container" id="overviewContainer">
                     <div class="overview-text">
-                        <p>The MBA at International American University is a postgraduate business degree designed to
-                            prepare students for leadership roles in middle and upper-level management. It builds
-                            advanced competencies in strategic thinking, analytical decision-making, and understanding
-                            of complex business environments — particularly with a global perspective.
-                            Students graduating from this program are equipped to lead in diverse business functions
-                            such as finance, marketing, operations, human resources, and strategic management, with
-                            ethical and analytical skills suited for dynamic organizational contexts.</p>
-
-                        <p>Upon Completion, Graduates Will Be Able To:</p>
-
-                        <p>Demonstrate advanced strategic thinking and analytical decision-making in complex business
-                            environments</p>
-
-
-                        <p>Lead and manage teams effectively across diverse business functions</p>
-
-
-                        <p>Apply global business perspectives to organizational challenges and opportunities</p>
-
-
-                        <p>Integrate ethical reasoning into leadership and managerial decisions</p>
+                        {{ university.description|safe }}
                     </div>
                     <div class="overview-fade" id="overviewFade"></div>
                 </div>
@@ -306,7 +287,7 @@
                     </div>
                 </div>
                 <div class="cert-image">
-                    <img src="assets/img/certificate_mockup.png" alt="Certificate and Student"
+                    <img src="{% static 'assets/img/certificate_mockup.png' %}" alt="Certificate and Student"
                         onerror="this.src='https://placehold.co/500x350/e0e0e0/333?text=Certificate+Preview'">
                 </div>
             </div>
@@ -318,13 +299,13 @@
         <div class="container">
             <h2 class="instructors-title">Meet the instructors</h2>
             <div class="instructor-card">
-                <img src="assets/img/instructor_ada.png" alt="Ada Lo, Ph.D." class="instructor-img"
+                <img src="{% static 'assets/img/instructor_ada.png' %}" alt="Ada Lo, Ph.D." class="instructor-img"
                     onerror="this.src='https://placehold.co/80x80/333/fff?text=AL'">
                 <div class="instructor-info">
                     <h3>Ada Lo, Ph.D.</h3>
                     <p>Associate Professor at The Hong Kong Polytechnic University</p>
                 </div>
-                <img src="assets/logos/logo1.webp" alt="PolyU" class="instructor-uni-logo">
+                <img src="{% static 'assets/logos/logo1.webp' %}" alt="PolyU" class="instructor-uni-logo">
             </div>
         </div>
     </section>
@@ -371,7 +352,7 @@
                     <p class="testimonial-text">"Living in this explosion of information — it's hugely rewarding to see
                         it 'democratized' in this way."</p>
                     <div class="testimonial-user">
-                        <img src="assets/img/user1.png" alt="Kathleen B."
+                        <img src="{% static 'assets/img/user1.png' %}" alt="Kathleen B."
                             onerror="this.src='https://placehold.co/50x50/333/fff?text=KB'">
                         <div class="user-info">
                             <h5>Kathleen B.</h5>
@@ -387,7 +368,7 @@
                         determined to pursue my career as an electrical engineer after I go to college."</p>
                     <a href="#" class="read-more-link">Show More</a>
                     <div class="testimonial-user">
-                        <img src="assets/img/user2.png" alt="Kyung B."
+                        <img src="{% static 'assets/img/user2.png' %}" alt="Kyung B."
                             onerror="this.src='https://placehold.co/50x50/333/fff?text=KB'">
                         <div class="user-info">
                             <h5>Kyung B.</h5>
@@ -403,7 +384,7 @@
                         course gave me challenging concepts and new perspectives."</p>
                     <a href="#" class="read-more-link">Show More</a>
                     <div class="testimonial-user">
-                        <img src="assets/img/user3.png" alt="Francisco R."
+                        <img src="{% static 'assets/img/user3.png' %}" alt="Francisco R."
                             onerror="this.src='https://placehold.co/50x50/333/fff?text=FR'">
                         <div class="user-info">
                             <h5>Francisco R.</h5>
@@ -446,9 +427,9 @@
     <section class="section-partnership">
         <div class="container partnership-inner">
             <div class="partnership-logos">
-                <img src="assets/logos/logo1.webp" alt="Hong Kong Polytechnic University" class="partner-logo">
+                <img src="{% static 'assets/logos/logo1.webp' %}" alt="Hong Kong Polytechnic University" class="partner-logo">
                 <div class="logo-divider"></div>
-                <img src="assets/img/edx_logo_black.png" alt="edX" class="partner-logo-edx"
+                <img src="{% static 'assets/img/edx_logo_black.png' %}" alt="edX" class="partner-logo-edx"
                     onerror="this.src='https://placehold.co/100x50/fff/000?text=edX'">
             </div>
             <div class="partnership-text">
