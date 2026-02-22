@@ -17,7 +17,8 @@
     <style>
         /* Inline override to use the generated image */
         .hero {
-            background: linear-gradient(135deg, rgba(10, 25, 47, 0.85) 0%, rgba(32, 10, 70, 0.85) 100%), url('{% static 'assets/images/hero_bg.png' %}');
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.85) 0%, rgba(32, 10, 70, 0.85) 100%),
+            url('{% static ' assets/images/hero_bg.png' %}');
             background-size: cover;
             background-position: center;
         }
@@ -209,97 +210,109 @@
     <!-- Hero Section with Slider -->
     <section class="hero">
         <div class="hero-slider">
-            <!-- Slide 1 -->
-            <div class="slide active"
-                style="background-image: linear-gradient(135deg, rgba(10,25,30,0.85) 0%, rgba(5,45,40,0.85) 100%), url('{% static 'hero_bg.png' %});">
+            {% for slide in slides %}
+            <div class="slide {% if forloop.first %}active{% endif %}"
+                style="background-image: {% if slide.layout == 'ZOOM' %}linear-gradient(135deg, rgba(240,245,250,0.95) 0%, rgba(230,240,250,0.95) 100%){% else %}linear-gradient(135deg, rgba(10,25,30,0.85) 0%, rgba(5,45,40,0.85) 100%){% endif %}, url('{{ slide.bg_image.url }}');">
+
+                {% if slide.layout == 'STANDARD' %}
                 <div class="slide-container">
                     <!-- Left: Main Content -->
                     <div class="slide-content-left">
-                        <h1>JOIN US, FIND OUT MORE</h1>
-                        <p>Programs combine multiple courses for a deeper learning experience to help you grow your
-                            skills.</p>
-                        <button class="slide-btn">Browse all programs</button>
+                        <h1>{{ slide.title }}</h1>
+                        <p>{{ slide.description }}</p>
+                        {% if slide.button_text and slide.button_url %}
+                        <button class="slide-btn" onclick="window.location.href='{{ slide.button_url }}'">{{
+                            slide.button_text }}</button>
+                        {% endif %}
                     </div>
 
                     <!-- Right: Quote -->
                     <div class="slide-content-right">
+                        {% if slide.quote_text %}
                         <div class="quote-block">
                             <i class="fas fa-quote-left quote-icon-large"></i>
-                            Every year, we help students gain recognised qualifications, practical skills, and global
-                            opportunities through structured pathways, partnerships, and career-focused training.
+                            {{ slide.quote_text }}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="slide"
-                style="background-image: linear-gradient(135deg, rgba(240,245,250,0.95) 0%, rgba(230,240,250,0.95) 100%), url('{% static 'hero_bg_2.png' %}');">
+                {% elif slide.layout == 'ZOOM' %}
                 <div class="slide-container slide-container-cards">
                     <!-- Left: Main Content -->
                     <div class="slide-content-left">
-                        <h1 style="color: #1a1a1a;">Monday Motivation Madness</h1>
-                        <p style="color: #333;">Every Monday, we host a short but powerful motivational zoom session
-                            that help you reset your mindset, stay disciplined, and stay positive for the week ahead.
-                        </p>
-
+                        <h1 style="color: #1a1a1a;">{{ slide.title }}</h1>
+                        <p style="color: #333;">{{ slide.description }}</p>
                     </div>
 
                     <!-- Right: Course Cards -->
                     <div class="slide-content-right slide-cards-container">
                         <!-- Card 1 -->
+                        {% if slide.card_1_title %}
                         <div class="slide-course-card">
                             <div class="slide-card-header">
                                 <span class="slide-card-label">Course</span>
                             </div>
                             <div class="slide-card-body">
-                                <img src="https://www.gstatic.com/devrel-devsite/prod/v2e3d5b1b1e3c3f3e3c3f3e3c3f3e3c3f3e3c3f3e/cloud/images/favicons/onecloud/super_cloud.png"
-                                    alt="Google Cloud" class="slide-card-logo" onerror="this.style.display='none'">
-                                <h3 class="slide-card-title">MONDAY MOTIVATION MADNESS 144</h3>
+                                {% if slide.card_1_image %}
+                                <img src="{{ slide.card_1_image.url }}" alt="Logo" class="slide-card-logo">
+                                {% endif %}
+                                <h3 class="slide-card-title">{{ slide.card_1_title }}</h3>
                                 <div class="slide-card-meta">
-                                    <i class="far fa-clock"></i> Time: Feb 23, 2026 08:00 PM Singapore
+                                    <i class="far fa-clock"></i> Time: {{ slide.card_1_date }}
                                 </div>
-                                <p class="slide-card-provider">There are two links provided. Please join using only one
-                                    of the links.</p>
+                                <p class="slide-card-provider">{{ slide.card_1_text }}</p>
 
                             </div>
                             <div class="slide-card-footer">
-                                <button class="slide-card-btn" onclick="window.open('#zoom-link-1', '_blank')">
-                                    <i class="fas fa-video"></i> zoom link 1
+                                {% if slide.card_1_link %}
+                                <button class="slide-card-btn"
+                                    onclick="window.open('{{ slide.card_1_link }}', '_blank')">
+                                    <i class="fas fa-video"></i> Zoom Link
                                 </button>
+                                {% endif %}
                             </div>
                         </div>
+                        {% endif %}
 
                         <!-- Card 2 -->
+                        {% if slide.card_2_title %}
                         <div class="slide-course-card">
                             <div class="slide-card-header">
                                 <span class="slide-card-label">Course</span>
                             </div>
                             <div class="slide-card-body">
-                                <img src="https://www.gstatic.com/devrel-devsite/prod/v2e3d5b1b1e3c3f3e3c3f3e3c3f3e3c3f3e3c3f3e/cloud/images/favicons/onecloud/super_cloud.png"
-                                    alt="Google Cloud" class="slide-card-logo" onerror="this.style.display='none'">
-                                <h3 class="slide-card-title">MONDAY MOTIVATION MADNESS 144</h3>
+                                {% if slide.card_2_image %}
+                                <img src="{{ slide.card_2_image.url }}" alt="Logo" class="slide-card-logo">
+                                {% endif %}
+                                <h3 class="slide-card-title">{{ slide.card_2_title }}</h3>
                                 <div class="slide-card-meta">
-                                    <i class="far fa-clock"></i> Time: Feb 23, 2026 08:00 PM Singapore
+                                    <i class="far fa-clock"></i> Time: {{ slide.card_2_date }}
                                 </div>
-                                <p class="slide-card-provider">There are two links provided. Please join using only one
-                                    of the links.</p>
+                                <p class="slide-card-provider">{{ slide.card_2_text }}</p>
                             </div>
                             <div class="slide-card-footer">
-                                <button class="slide-card-btn" onclick="window.open('#zoom-link-2', '_blank')">
-                                    <i class="fas fa-video"></i> zoom link 2
+                                {% if slide.card_2_link %}
+                                <button class="slide-card-btn"
+                                    onclick="window.open('{{ slide.card_2_link }}', '_blank')">
+                                    <i class="fas fa-video"></i> Zoom Link
                                 </button>
+                                {% endif %}
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
+                {% endif %}
             </div>
+            {% endfor %}
 
             <!-- Navigation (Pill Style) -->
             <div class="slider-nav">
                 <button class="slider-arrow" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-                <div class="slider-dot active" onclick="goToSlide(0)"></div>
-                <div class="slider-dot" onclick="goToSlide(1)"></div>
+                {% for slide in slides %}
+                <div class="slider-dot {% if forloop.first %}active{% endif %}"
+                    onclick="goToSlide({{ forloop.counter0 }})"></div>
+                {% endfor %}
                 <button class="slider-arrow" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
             </div>
 
@@ -317,36 +330,48 @@
             <div class="partners-scroll">
                 <!-- First set of logos -->
                 <div class="partners-track">
-                    <img src="{% static 'assets/logos/new/Bali_Global_Empire-removebg-preview.png' %}" alt="CATS College" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/CATS_College_logo_design-removebg-preview (2).png' %}" alt="City of Manchester" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/ChatGPT Image Feb 2, 2026, 12_44_03 PM.png' %}" alt="Daebak Diaries" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/CITY_OF_MANCHESTER_-_-removebg-preview.png' %}" alt="Empire Global" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/Empire_Global_Recruitment_logo_design-removebg-preview.png' %}" alt="Empire Global Recruitment"
+                    <img src="{% static 'assets/logos/new/Bali_Global_Empire-removebg-preview.png' %}"
+                        alt="CATS College" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/CATS_College_logo_design-removebg-preview (2).png' %}"
+                        alt="City of Manchester" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/ChatGPT Image Feb 2, 2026, 12_44_03 PM.png' %}"
+                        alt="Daebak Diaries" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/CITY_OF_MANCHESTER_-_-removebg-preview.png' %}"
+                        alt="Empire Global" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/Empire_Global_Recruitment_logo_design-removebg-preview.png' %}"
+                        alt="Empire Global Recruitment" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/EUROPEAN_CITY_OF_UNIVERSITY__ECU_-removebg-preview (1).png' %}"
+                        alt="Empire Commerce Solutions" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/Fortress_Global_Middle_East_-removebg-preview.png' %}"
+                        alt="European City of University" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/Hope_builder_flower_badge_design-removebg-preview.png' %}"
+                        alt="Fortress Global Middle East" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/IMTC_LOGO-removebg-preview.png' %}" alt="IMTC"
                         class="partner-logo">
-                    <img src="{% static 'assets/logos/new/EUROPEAN_CITY_OF_UNIVERSITY__ECU_-removebg-preview (1).png' %}" alt="Empire Commerce Solutions"
-                        class="partner-logo">
-                    <img src="{% static 'assets/logos/new/Fortress_Global_Middle_East_-removebg-preview.png' %}" alt="European City of University"
-                        class="partner-logo">
-                    <img src="{% static 'assets/logos/new/Hope_builder_flower_badge_design-removebg-preview.png' %}" alt="Fortress Global Middle East"
-                        class="partner-logo">
-                    <img src="{% static 'assets/logos/new/IMTC_LOGO-removebg-preview.png' %}" alt="IMTC" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/INSAN_College_E-Learning-removebg-preview (2).png' %}" alt="INSAN College" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/INTERNATIONAL_AMERICAN_UNIVERSITY__IAU_-removebg-preview (1).png' %}" alt="International American University"
-                        class="partner-logo">
-                    <img src="{% static 'assets/logos/new/Kangwon_National_University_logo_design-removebg-preview.png' %}" alt="Kangwon National University" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/INSAN_College_E-Learning-removebg-preview (2).png' %}"
+                        alt="INSAN College" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/INTERNATIONAL_AMERICAN_UNIVERSITY__IAU_-removebg-preview (1).png' %}"
+                        alt="International American University" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/Kangwon_National_University_logo_design-removebg-preview.png' %}"
+                        alt="Kangwon National University" class="partner-logo">
                     <img src="{% static 'assets/logos/new/KIC-removebg-preview.png' %}" alt="KIC" class="partner-logo">
                     <img src="{% static 'assets/logos/new/LCCI-removebg-preview.png' %}" alt="KLC" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/Leaders_in_commerce-removebg-preview.png' %}" alt="LCCI" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/Orange_County_University_logo_design-removebg-preview (1).png' %}" alt="Leaders in Commerce" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/RecardMe_logo_with_vibrant_folder_icon-removebg-preview.png' %}" alt="Orange County University"
+                    <img src="{% static 'assets/logos/new/Leaders_in_commerce-removebg-preview.png' %}" alt="LCCI"
                         class="partner-logo">
-                    <img src="{% static 'assets/logos/new/Screenshot 2026-01-28 at 4.53.41 PM (7).png' %}" alt="RecardMe"
+                    <img src="{% static 'assets/logos/new/Orange_County_University_logo_design-removebg-preview (1).png' %}"
+                        alt="Leaders in Commerce" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/RecardMe_logo_with_vibrant_folder_icon-removebg-preview.png' %}"
+                        alt="Orange County University" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/Screenshot 2026-01-28 at 4.53.41 PM (7).png' %}"
+                        alt="RecardMe" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/UDA_CENTRE-removebg-preview.png' %}" alt="Partner"
                         class="partner-logo">
-                    <img src="{% static 'assets/logos/new/UDA_CENTRE-removebg-preview.png' %}" alt="Partner" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/UPGRADE_ENTERPRISE-removebg-preview.png' %}" alt="Upgrade Enterprise" class="partner-logo">
-                    <img src="{% static 'assets/logos/new/Upmind_Camp-removebg-preview.png' %}" alt="Upmind Camp" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/UPGRADE_ENTERPRISE-removebg-preview.png' %}"
+                        alt="Upgrade Enterprise" class="partner-logo">
+                    <img src="{% static 'assets/logos/new/Upmind_Camp-removebg-preview.png' %}" alt="Upmind Camp"
+                        class="partner-logo">
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -358,24 +383,17 @@
 
             <!-- Tabs -->
             <div class="explore-tabs" id="exploreTabs">
-                <button class="explore-tab active" data-category="business" onclick="selectExploreCategory('business')">
-                    <i class="fas fa-chart-line"></i> Business and sales management
+                {% for category in categories %}
+                <button class="explore-tab {% if forloop.first %}active{% endif %}" data-category="{{ category.slug }}"
+                    onclick="selectExploreCategory('{{ category.slug }}')">
+                    {% if category.svg_icon %}
+                    <!-- Assuming svg_icon is an image/svg file -->
+                    <img src="{{ category.svg_icon.url }}" alt=""
+                        style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;">
+                    {% endif %}
+                    {{ category.title }}
                 </button>
-                <button class="explore-tab" data-category="healthcare" onclick="selectExploreCategory('healthcare')">
-                    <i class="fas fa-heartbeat"></i> Hospitality in tourism management
-                </button>
-                <button class="explore-tab" data-category="teaching" onclick="selectExploreCategory('teaching')">
-                    <i class="fas fa-chalkboard-teacher"></i> Business adminstration
-                </button>
-                <button class="explore-tab" data-category="tech" onclick="selectExploreCategory('tech')">
-                    <i class="fas fa-laptop-code"></i> Advance Diploma
-                </button>
-                <button class="explore-tab" data-category="psychology" onclick="selectExploreCategory('psychology')">
-                    <i class="fas fa-brain"></i> Specialist Diploma
-                </button>
-                <button class="explore-tab" data-category="languages" onclick="selectExploreCategory('languages')">
-                    <i class="fas fa-language"></i> Postgraduate Diploma
-                </button>
+                {% endfor %}
             </div>
 
             <!-- Content Area -->
@@ -396,58 +414,16 @@
 
             <div class="services-grid">
                 <!-- Service 1 -->
+                {% for i in features %}
                 <div class="service-card">
                     <div class="service-icon-box">
-                        <i class="fas fa-book-open"></i>
+                        <i class="fas {{i.icon}}"></i>
                     </div>
-                    <h3>Online Courses</h3>
-                    <p>Access hundreds of expertly crafted courses across various subjects and skill levels.</p>
+                    <h3>{{i.title}}</h3>
+                    <p>{{i.description}}</p>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3>Offline Training</h3>
-                    <p>Connect with experienced tutors for personalized one-on-one learning sessions.</p>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Grants & Claims</h3>
-                    <p>Learn at your own pace with our comprehensive library of video tutorials.</p>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Affordable Education</h3>
-                    <p>Earn recognized certificates and credentials to advance your career.</p>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="far fa-clock"></i>
-                    </div>
-                    <h3>Flexible Learning</h3>
-                    <p>Study anytime, anywhere with our mobile-friendly learning platform.</p>
-                </div>
-
-                <!-- Service 6 -->
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Global Community</h3>
-                    <p>Join a worldwide community of learners and educators sharing knowledge.</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -457,8 +433,8 @@
         <div class="container featured-grid">
             <!-- Left: Image -->
             <div class="featured-img-container">
-                <img src="{% static 'assets/img/banners/banner2.png' %}" alt="International Study-to-Career Crossover Offline Training"
-                    class="featured-img">
+                <img src="{% static 'assets/img/banners/banner2.png' %}"
+                    alt="International Study-to-Career Crossover Offline Training" class="featured-img">
             </div>
 
             <!-- Right: Content -->
@@ -532,30 +508,32 @@
             <!-- Tabs -->
             <div class="tabs-container">
                 <div class="tabs-list">
-                    <button class="tab-btn active" data-category="all" onclick="setActiveTab(this)">Feature courses</button>
-                    <button class="tab-btn" data-category="executive" onclick="setActiveTab(this)">Courses</button>
-                    <button class="tab-btn" data-category="course" onclick="setActiveTab(this)">Certificates</button>
-                    <button class="tab-btn" data-category="certificate" onclick="setActiveTab(this)">MBA</button>
-                    <button class="tab-btn" data-category="master" onclick="setActiveTab(this)">BBA</button>
+                    <button class="tab-btn active" data-category="all" onclick="setActiveTab(this)">All</button>
+                    {% for category in trending_categories %}
+                    <button class="tab-btn" data-category="{{ category.slug }}" onclick="setActiveTab(this)">{{
+                        category.name }}</button>
+                    {% endfor %}
                 </div>
             </div>
 
             <!-- Filter Pills -->
             <div class="filter-pills">
-                <button class="filter-pill active" data-topic="all" onclick="togglePill(this)">Featured</button>
-                <button class="filter-pill" data-topic="ai" onclick="togglePill(this)">DHTM</button>
-                <button class="filter-pill" data-topic="sustainability" onclick="togglePill(this)">PGDM</button>
-                <button class="filter-pill" data-topic="business" onclick="togglePill(this)">ADBM</button>
-                <button class="filter-pill" data-topic="data" onclick="togglePill(this)">DBSM</button>
+                <button class="filter-pill active" data-topic="all" onclick="togglePill(this)">All Topics</button>
+                {% for topic in trending_topics %}
+                <button class="filter-pill" data-topic="{{ topic.slug }}" onclick="togglePill(this)">{{ topic.name
+                    }}</button>
+                {% endfor %}
             </div>
         </div>
 
         <div class="course-grid">
             {% for univer in universities %}
             <a href="{% url 'univer' univer.pk %}" style="text-decoration: none;">
-                <div class="course-card" data-category="certificate" data-topic="data">
+                <div class="course-card"
+                    data-category="{% if univer.trending_category %}{{ univer.trending_category.slug }}{% else %}all{% endif %}"
+                    data-topic="{% if univer.trending_topic %}{{ univer.trending_topic.slug }}{% else %}all{% endif %}">
                     <div class="card-img"
-                        style="background-image: url('{{ univer.image.url }}');">
+                        style="background-image: url('{% if univer.image %}{{ univer.image.url }}{% else %}{% static 'assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp' %}{% endif %}');">
                         <div class="card-logo-overlay">
                             <img src="{{ univer.logo.url }}" alt="Pro Logo">
                         </div>
@@ -579,11 +557,11 @@
                         </div>
                     </div>
                     <div class="card-body"> -->
-                        <!-- <span class="card-partner">HarvardX</span> -->
-                        <!-- <h3 class="card-title">Orange County University:</h3>
+            <!-- <span class="card-partner">HarvardX</span> -->
+            <!-- <h3 class="card-title">Orange County University:</h3>
                         <p class="card-meta">Master of Business Administration(MBA) (Online Program)</p> -->
-                        <!-- <span class="badge">Professional Certificate</span> -->
-                    <!-- </div>
+            <!-- <span class="badge">Professional Certificate</span> -->
+            <!-- </div>
                 </div>
             </a> -->
 
@@ -598,8 +576,8 @@
                 <div class="card-body">
                     <span class="card-partner">International College of Creative Arts Technology: </span>
                     <h3 class="card-title">Diploma in Business Administration</h3> -->
-                    <!-- <p class="card-meta">Biology • Introductory</p> -->
-                <!-- </div>
+            <!-- <p class="card-meta">Biology • Introductory</p> -->
+            <!-- </div>
             </div> -->
 
             <!-- Card 3 -->
@@ -613,9 +591,9 @@
                 <div class="card-body">
                     <h3 class="card-title">KINGSTON INTERNATIONAL COLLEGE: </h3>
                     <p class="card-meta">Diploma in Hospitality and Tourism Management (E-Learning)</p> -->
-                    <!-- <p class="card-meta">Data Science • Beginner</p>
+            <!-- <p class="card-meta">Data Science • Beginner</p>
                     <span class="badge">Professional Certificate</span> -->
-                <!-- </div>
+            <!-- </div>
             </div> -->
 
             <!-- Card 4 -->
@@ -629,9 +607,9 @@
                 <div class="card-body">
                     <h3 class="card-title">KINGSTON INTERNATIONAL COLLEGE: </h3>
                     <p class="card-meta">Diploma in Business and Sales Management (E-Learning)</p> -->
-                    <!-- <p class="card-meta">Business • Beginner</p>
+            <!-- <p class="card-meta">Business • Beginner</p>
                     <span class="badge">Professional Certificate</span> -->
-                <!-- </div>
+            <!-- </div>
             </div> -->
 
             <!-- Additional Cards for Demo -->
@@ -645,9 +623,9 @@
                 <div class="card-body">
                     <h3 class="card-title">European City University: </h3>
                     <p class="card-meta">Specialist Diploma in Events Management</p> -->
-                    <!-- <p class="card-meta">Computer Science • Advanced</p>
+            <!-- <p class="card-meta">Computer Science • Advanced</p>
                     <span class="badge">Master's Degree</span> -->
-                <!-- </div>
+            <!-- </div>
             </div> -->
 
             <!-- <div class="course-card" data-category="executive" data-topic="business">
@@ -660,9 +638,9 @@
                 <div class="card-body">
                     <h3 class="card-title">International American University: </h3>
                     <p class="card-meta">Master of Business Administration</p> -->
-                    <!-- <p class="card-meta">Leadership • Advanced</p>
+            <!-- <p class="card-meta">Leadership • Advanced</p>
                     <span class="badge">Executive Education</span> -->
-                <!-- </div>
+            <!-- </div>
             </div> -->
             <!-- Card 1 -->
             <!-- <a href="course_detail.html">
@@ -676,9 +654,9 @@
                     <div class="card-body">
                         <h3 class="card-title">Insan College: </h3>
                         <p class="card-meta">LCCI Diploma in Business Studies</p> -->
-                        <!-- <p class="card-meta">Computer Science • Intermediate</p>
+            <!-- <p class="card-meta">Computer Science • Intermediate</p>
                         <span class="badge">Professional Certificate</span> -->
-                    <!-- </div>
+            <!-- </div>
                 </div>
             </a> -->
 
@@ -693,8 +671,8 @@
                 <div class="card-body">
                     <h3 class="card-title">Kingston International College: </h3>
                     <p class="card-meta">Diploma in Hospitality and tourism management</p> -->
-                    <!-- <p class="card-meta">Biology • Introductory</p> -->
-                <!-- </div>
+            <!-- <p class="card-meta">Biology • Introductory</p> -->
+            <!-- </div>
             </div> -->
 
             <!-- Card 3
@@ -708,9 +686,9 @@
                 <div class="card-body">
                     <h3 class="card-title">KINGSTON INTERNATIONAL COLLEGE: </h3>
                     <p class="card-meta">Postgraduate Diploma in Business Management</p> -->
-                    <!-- <p class="card-meta">Data Science • Beginner</p>
+            <!-- <p class="card-meta">Data Science • Beginner</p>
                     <span class="badge">Professional Certificate</span> -->
-                <!-- </div>
+            <!-- </div>
             </div> -->
 
             <!-- Card 4 -->
@@ -727,7 +705,7 @@
                     <p class="card-meta">Business • Beginner</p>
                     <span class="badge">Professional Certificate</span>
                 </div>
-            </div> --> 
+            </div> -->
 
             <!-- Additional Cards for Demo -->
             <!-- <div class="course-card" data-category="master" data-topic="ai">
@@ -740,9 +718,9 @@
                 <div class="card-body">
                     <h3 class="card-title">Insan College: </h3>
                     <p class="card-meta">Diploma in Business Analytics</p> -->
-                    <!-- <p class="card-meta">Computer Science • Advanced</p>
+            <!-- <p class="card-meta">Computer Science • Advanced</p>
                     <span class="badge">Master's Degree</span> -->
-                <!-- </div>
+            <!-- </div>
             </div> -->
 
             <!-- <div class="course-card" data-category="executive" data-topic="business">
@@ -755,9 +733,9 @@
                 <div class="card-body">
                     <h3 class="card-title">International College of Creative Arts Technology: </h3>
                     <p class="card-meta">Diploma in Audio Production</p> -->
-                    <!-- <p class="card-meta">Leadership • Advanced</p>
+            <!-- <p class="card-meta">Leadership • Advanced</p>
                     <span class="badge">Executive Education</span> -->
-                <!-- </div>
+            <!-- </div>
             </div> -->
         </div>
     </main>
@@ -766,49 +744,18 @@
     <section class="section-topics container" style="margin-top: 60px; margin-bottom: 60px;">
         <h2 class="section-title" style="margin-bottom: 32px;">Popular topics</h2>
         <div class="topics-grid">
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/1.png' %}" class="topic-icon" alt="Diploma Pathways">
-                <span class="topic-name">Diploma Pathways</span>
+            {% for topic in popular_topics %}
+            <a href="{% if topic.link %}{{ topic.link }}{% else %}#{% endif %}" class="topic-card">
+                {% if topic.icon %}
+                <img src="{{ topic.icon.url }}" class="topic-icon" alt="{{ topic.title }}">
+                {% endif %}
+                <span class="topic-name">{{ topic.title }}</span>
             </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/2.png' %}" class="topic-icon" alt="Online Learning">
-                <span class="topic-name">Online Learning</span>
-            </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/3.png' %}" class="topic-icon" alt="Student Life">
-                <span class="topic-name">Student Life</span>
-            </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/4.png' %}" class="topic-icon" alt="Recardme and marketing services">
-                <span class="topic-name">Recardme and marketing services</span>
-            </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/5.png' %}" class="topic-icon" alt="Global Opportunities">
-                <span class="topic-name">Global Opportunities</span>
-            </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/6.png' %}" class="topic-icon" alt="Career Training">
-                <span class="topic-name">Career Training</span>
-            </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/7.png' %}" class="topic-icon" alt="STUDY ABROAD">
-                <span class="topic-name">STUDY ABROAD</span>
-            </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/8.png' %}" class="topic-icon" alt="Business Partnerships">
-                <span class="topic-name">Business Partnerships</span>
-            </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/9.png' %}" class="topic-icon" alt="IT SUPPORT">
-                <span class="topic-name">IT SUPPORT</span>
-            </a>
-            <a href="category_detail.html" class="topic-card">
-                <img src="{% static 'assets/img/topics/10.png' %}" class="topic-icon" alt="Business Consultancy">
-                <span class="topic-name">Business Consultancy</span>
-            </a>
+            {% endfor %}
         </div>
     </section>
 
+    <!-- Value Props -->
     <!-- Value Props -->
     <section class="value-props">
         <div class="container">
@@ -1301,140 +1248,7 @@
             });
         });
         // Explore Top Subjects Logic
-        const exploreCategories = {
-            'business': {
-                title: 'Diploma in Business and sales management',
-                description: 'Boss it in business with our specialist upskilling courses, industry certifications and high-flying degrees.<br><br>No matter what your goals are, leading experts from the likes of Accenture, AWS and Deakin University will guide you to achieve them. From data analytics to digital marketing, start learning from the best.',
-                quote: 'The course was beautifully conceptualised, and well presented. The videos were lucid, clear, articulate and informative.',
-                author: 'Charles, UK',
-                courses: [
-                    {
-                        title: 'Kingston International College: Diploma in Business and sales management - (Study in Singapore)',
-                        provider: 'Starweaver',
-                        desc: 'Lead your team, influence cybersecurity culture, and embed practical strategies across your organisation.',
-                        type: 'See more',
-                        gradient: 'linear-gradient(135deg, #a71d78 0%, #d42e68 100%)'
-                    },
-                    {
-                        title: 'Kingston International College: Diploma in Business and sales management: E-LEARNING (ONLINE) DE 1',
-                        provider: 'Starweaver',
-                        desc: 'Explore modern hospitality management principles and future industry trends in this foundational 2-week course.',
-                        type: 'See more',
-                        gradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)'
-                    }
-                ]
-            },
-            'healthcare': {
-                title: 'Healthcare & Medicine',
-                description: 'Advance your medical career with world-class education from top institutions. From nursing to public health, gain the skills to make a difference.',
-                quote: 'This program gave me the confidence to take on new challenges in my hospital.',
-                author: 'Sarah, USA',
-                courses: [
-                    {
-                        title: 'Anatomy: Human Neuroanatomy',
-                        provider: 'MichiganX',
-                        desc: 'Learn about the different parts of the human brain and how they work together.',
-                        type: 'See more',
-                        gradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)'
-                    },
-                    {
-                        title: 'Fundamentals of Clinical Trials',
-                        provider: 'HarvardX',
-                        desc: 'Understand the scientific, statistical, and ethical aspects of clinical trials research.',
-                        type: 'See more',
-                        gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)'
-                    }
-                ]
-            },
-            'teaching': {
-                title: 'Teaching & Education',
-                description: 'Empower the next generation. Master new teaching strategies, educational technologies, and inclusive practices.',
-                quote: 'I learned so many new techniques that I could immediately apply in my classroom.',
-                author: 'Maria, Spain',
-                courses: [
-                    {
-                        title: 'Inclusive Teaching: Supporting All Students',
-                        provider: 'ColumbiaX',
-                        desc: 'Learn how to create an inclusive learning environment for all students.',
-                        type: 'See more',
-                        gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
-                    },
-                    {
-                        title: 'Blended Learning Essentials',
-                        provider: 'LeedsX',
-                        desc: 'Discover the benefits of blended learning and how to implement it effectively.',
-                        type: 'See more',
-                        gradient: 'linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%)'
-                    }
-                ]
-            },
-            'tech': {
-                title: 'Tech & IT',
-                description: 'Stay ahead in the rapidly evolving tech landscape. Master coding, cloud computing, AI, and more.',
-                quote: 'The hands-on labs were fantastic. I feel ready to take my certification exam.',
-                author: 'David, India',
-                courses: [
-                    {
-                        title: 'CS50\'s Introduction to Computer Science',
-                        provider: 'HarvardX',
-                        desc: 'An introduction to the intellectual enterprises of computer science and the art of programming.',
-                        type: 'See more',
-                        gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                    },
-                    {
-                        title: 'Google Cloud Computing Foundations',
-                        provider: 'Google',
-                        desc: 'Learn the basics of cloud computing and how to use Google Cloud Platform.',
-                        type: 'See more',
-                        gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
-                    }
-                ]
-            },
-            'psychology': {
-                title: 'Psychology & Mental Health',
-                description: 'Understand the human mind. Explore courses in psychology, neuroscience, and mental health.',
-                quote: 'Fascinating insights into human behavior. Highly recommended for anyone interested in psychology.',
-                author: 'Emily, Canada',
-                courses: [
-                    {
-                        title: 'Introduction to Psychology',
-                        provider: 'UBCx',
-                        desc: 'Learn about the history of psychology and key concepts in the field.',
-                        type: 'Short Course',
-                        gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
-                    },
-                    {
-                        title: 'The Science of Happiness',
-                        provider: 'BerkeleyX',
-                        desc: 'Explore the roots of a happy and meaningful life through science and practice.',
-                        type: 'Short Course',
-                        gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
-                    }
-                ]
-            },
-            'languages': {
-                title: 'Languages',
-                description: 'Connect with the world. Learn a new language or improve your proficiency for travel or career.',
-                quote: 'A fun and interactive way to learn a new language. I made great progress in just a few weeks.',
-                author: 'Hiroshi, Japan',
-                courses: [
-                    {
-                        title: 'Basic Spanish 1',
-                        provider: 'UPValenciaX',
-                        desc: 'Learn the basics of Spanish language and culture for everyday situations.',
-                        type: 'Short Course',
-                        gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
-                    },
-                    {
-                        title: 'English for Business Networking',
-                        provider: 'UWashingtonX',
-                        desc: 'Improve your English skills for professional networking and career advancement.',
-                        type: 'Short Course',
-                        gradient: 'linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)'
-                    }
-                ]
-            }
-        };
+        const exploreCategories = {{ categories_json| safe }};
 
         function selectExploreCategory(category) {
             // Update Tabs
@@ -1449,11 +1263,33 @@
 
             const contentDiv = document.getElementById('exploreContent');
 
+            // Build Content Grid
+            // Create the top section with title, description, quote
+            let html = `
+                <div class="explore-intro-grid">
+                    <div class="explore-intro-left">
+                        <h3 class="explore-category-title">${data.title}</h3>
+                        <p class="explore-category-desc">${data.description}</p>
+                    </div>
+                    <div class="explore-intro-right">
+                         ${data.quote ? `
+                         <div class="explore-quote-box">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"${data.quote}"</p>
+                            ${data.author ? `<span>- ${data.author}</span>` : ''}
+                        </div>
+                         ` : ''}
+                    </div>
+                </div>
+                <div class="explore-cards-grid">
+            `;
+
             let cardsHtml = '';
             data.courses.forEach(course => {
+                const bgStyle = course.image ? `url('${course.image}')` : course.gradient;
                 cardsHtml += `
                 <div class="explore-card">
-                    <div class="explore-card-img-top" style="background-image: ${course.gradient};">
+                    <div class="explore-card-img-top" style="background-image: ${bgStyle}; background-size: cover; background-position: center;">
                          <div class="explore-card-partner-logo">
                             <span style="font-size: 0.8rem; font-weight:700; color: #1a1a1a;">${course.provider}</span>
                         </div>
@@ -1467,26 +1303,15 @@
                 `;
             });
 
-            contentDiv.innerHTML = `
-                <div class="explore-content-left">
-                    <h3 class="explore-info-title">${data.title}</h3>
-                    <p class="explore-info-desc">${data.description}</p>
-                    <div class="explore-quote">
-                        <p class="explore-quote-text"><i class="fas fa-quote-left" style="margin-right:8px;font-size:0.8em;vertical-align:top;"></i> ${data.quote} <i class="fas fa-quote-right" style="margin-left:4px;font-size:0.8em;vertical-align:top;"></i></p>
-                        <span class="explore-quote-author">${data.author}</span>
-                    </div>
-                    <button class="explore-btn">Explore courses</button>
-                </div>
-                <div class="explore-cards-grid">
-                    ${cardsHtml}
-                </div>
-            `;
+            html += cardsHtml + '</div>'; // Close grid
+            contentDiv.innerHTML = html;
         }
 
-        // Initialize with Business
-        document.addEventListener('DOMContentLoaded', () => {
-            selectExploreCategory('business');
-        });
+        // Initialize with first category if exists
+        const firstTab = document.querySelector('.explore-tab.active');
+        if (firstTab) {
+            selectExploreCategory(firstTab.dataset.category);
+        }
     </script>
 </body>
 

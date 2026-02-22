@@ -100,7 +100,7 @@
                 <div class="univer-badges">
                     <img src="{{ university.logo.url }}" alt="{{ university.title }}" class="univer-logo">
                     <div class="verified-badge">
-                        <i class="fas fa-certificate"></i> HKPolyUx verified
+                        <i class="fas fa-certificate"></i> {{ university.verified_by }} verified
                     </div>
                 </div>
 
@@ -108,30 +108,31 @@
 
                 <div class="course-badges">
                     <div class="course-badge">
-                        <i class="fas fa-tachometer-alt"></i> Intermediate
+                        <i class="fas fa-tachometer-alt"></i> {{ university.level }}
                     </div>
                     <div class="course-badge">
-                        <i class="fas fa-user-clock"></i> Instructor-paced
+                        <i class="fas fa-user-clock"></i> {{ university.pacing }}
                     </div>
                     <div class="course-badge">
-                        <i class="far fa-calendar-alt"></i> 32 weeks
+                        <i class="far fa-calendar-alt"></i> {{ university.duration_weeks }} weeks
                     </div>
                     <div class="course-badge">
-                        <i class="fas fa-award"></i> Earn a certificate
+                        <i class="fas fa-award"></i> {{ university.certification_type }}
                     </div>
                 </div>
 
                 <div class="course-stats">
-                    <a href="#" class="stats-link">4 courses</a>
+                    <a href="#" class="stats-link">{{ university.course_count }} courses</a>
                     <span class="stats-separator">,</span>
-                    <span>8 months</span>
+                    <span>{{ university.months_duration }} months</span>
                 </div>
 
                 <div class="email-consent">
                     <label class="consent-label">
                         <input type="checkbox">
-                        I would like to receive email from HKPolyUx and learn about other offerings related to
-                        International Hospitality Management.
+                        I would like to receive email from {{ university.verified_by }} and learn about other offerings
+                        related to
+                        {{ university.title }}.
                     </label>
                 </div>
             </div>
@@ -139,12 +140,16 @@
             <!-- Right Side Card -->
             <div class="univer-card">
                 <div class="card-dates">
-                    <h3 class="date-title">Next course Started Jan 09</h3>
-                    <p class="date-subtitle">Ends Apr 02</p>
+                    {% if university.start_date %}
+                    <h3 class="date-title">Next course Started {{ university.start_date|date:"M d" }}</h3>
+                    {% endif %}
+                    {% if university.end_date %}
+                    <p class="date-subtitle">Ends {{ university.end_date|date:"M d" }}</p>
+                    {% endif %}
                 </div>
                 <button class="btn btn-primary btn-block">Advance your career</button>
                 <div class="learners-count">
-                    <strong>23,202</strong> learners enrolled
+                    <strong>{{ university.student_count }}</strong> learners enrolled
                 </div>
             </div>
         </div>
@@ -186,12 +191,11 @@
             <div class="skills-container">
                 <h2 class="skills-title">Grow these skills</h2>
                 <div class="skills-list">
-                    <span class="skill-tag">Hospitality Management</span>
-                    <span class="skill-tag">Integrated Marketing Communications</span>
-                    <span class="skill-tag">Loyalty Programs</span>
-                    <span class="skill-tag">Marketing</span>
-                    <span class="skill-tag">Selling Techniques</span>
-                    <span class="skill-tag">Tourism</span>
+                    {% for skill in university.get_skills_list %}
+                    <span class="skill-tag">{{ skill }}</span>
+                    {% empty %}
+                    <span class="skill-tag">No specific skills listed</span>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -243,16 +247,16 @@
             <div class="details-grid">
                 <div class="detail-item">
                     <h4>Language</h4>
-                    <p>English</p>
+                    <p>{{ university.language }}</p>
                 </div>
                 <div class="detail-item spacer"></div> <!-- Empty cell for layout -->
                 <div class="detail-item">
                     <h4>Transcripts</h4>
-                    <p>English &nbsp; 中文</p>
+                    <p>{{ university.transcripts }}</p>
                 </div>
                 <div class="detail-item">
                     <h4>Prerequisites</h4>
-                    <p>None</p>
+                    <p>{{ university.prerequisites }}</p>
                 </div>
             </div>
         </div>
@@ -298,14 +302,29 @@
     <section class="section-instructors">
         <div class="container">
             <h2 class="instructors-title">Meet the instructors</h2>
-            <div class="instructor-card">
-                <img src="{% static 'assets/img/instructor_ada.png' %}" alt="Ada Lo, Ph.D." class="instructor-img"
-                    onerror="this.src='https://placehold.co/80x80/333/fff?text=AL'">
-                <div class="instructor-info">
-                    <h3>Ada Lo, Ph.D.</h3>
-                    <p>Associate Professor at The Hong Kong Polytechnic University</p>
+            <div class="instructors-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;">
+                {% for instructor in university.instructors.all %}
+                <div class="instructor-card">
+                    {% if instructor.image %}
+                    <img src="{{ instructor.image.url }}" alt="{{ instructor.name }}" class="instructor-img">
+                    {% else %}
+                    <img src="https://placehold.co/80x80/333/fff?text={{ instructor.name|slice:':2' }}"
+                        alt="{{ instructor.name }}" class="instructor-img">
+                    {% endif %}
+
+                    <div class="instructor-info">
+                        <h3>{{ instructor.name }}</h3>
+                        <p>{{ instructor.title }}</p>
+                    </div>
+
+                    {% if instructor.institution_logo %}
+                    <img src="{{ instructor.institution_logo.url }}" alt="Logo" class="instructor-uni-logo">
+                    {% endif %}
                 </div>
-                <img src="{% static 'assets/logos/logo1.webp' %}" alt="PolyU" class="instructor-uni-logo">
+                {% empty %}
+                <p>No instructors listed yet.</p>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -326,12 +345,16 @@
                     </div>
                     <div class="program-card-body">
                         <div class="program-info">
-                            <span><i class="fas fa-desktop"></i> 4 courses</span>
-                            <span><i class="fas fa-tachometer-alt"></i> Instructor-Paced</span>
+                            <span><i class="fas fa-desktop"></i> {{ university.course_count }} courses</span>
+                            <span><i class="fas fa-tachometer-alt"></i> {{ university.pacing }}</span>
                         </div>
                         <div class="program-pricing">
-                            <span class="current-price">$1,000.80</span>
-                            <span class="original-price">$1,112</span>
+                            {% if university.tuition_fee %}
+                            <span class="current-price">${{ university.tuition_fee }}</span>
+                            {% endif %}
+                            {% if university.original_price %}
+                            <span class="original-price">${{ university.original_price }}</span>
+                            {% endif %}
                             <button class="btn btn-dark-teal">Learn more</button>
                         </div>
                     </div>
@@ -346,52 +369,26 @@
             <h2 class="section-title">Hear what other learners have to say</h2>
 
             <div class="testimonials-grid">
-                <!-- Testimonial 1 -->
+                {% for review in university.reviews.all %}
                 <div class="testimonial-card">
                     <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">"Living in this explosion of information — it's hugely rewarding to see
-                        it 'democratized' in this way."</p>
+                    <p class="testimonial-text">"{{ review.quote }}"</p>
                     <div class="testimonial-user">
-                        <img src="{% static 'assets/img/user1.png' %}" alt="Kathleen B."
-                            onerror="this.src='https://placehold.co/50x50/333/fff?text=KB'">
+                        {% if review.user_image %}
+                        <img src="{{ review.user_image.url }}" alt="{{ review.user_name }}">
+                        {% else %}
+                        <img src="https://placehold.co/50x50/333/fff?text={{ review.user_name|slice:':2' }}"
+                            alt="{{ review.user_name }}">
+                        {% endif %}
                         <div class="user-info">
-                            <h5>Kathleen B.</h5>
-                            <span>New Hampshire</span>
+                            <h5>{{ review.user_name }}</h5>
+                            <span>{{ review.user_location }}</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">"edX has enriched my life. I have truly found my passion, and now I am
-                        determined to pursue my career as an electrical engineer after I go to college."</p>
-                    <a href="#" class="read-more-link">Show More</a>
-                    <div class="testimonial-user">
-                        <img src="{% static 'assets/img/user2.png' %}" alt="Kyung B."
-                            onerror="this.src='https://placehold.co/50x50/333/fff?text=KB'">
-                        <div class="user-info">
-                            <h5>Kyung B.</h5>
-                            <span>Maryland</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="testimonial-text">"Even though I have practical education and working experience, the
-                        course gave me challenging concepts and new perspectives."</p>
-                    <a href="#" class="read-more-link">Show More</a>
-                    <div class="testimonial-user">
-                        <img src="{% static 'assets/img/user3.png' %}" alt="Francisco R."
-                            onerror="this.src='https://placehold.co/50x50/333/fff?text=FR'">
-                        <div class="user-info">
-                            <h5>Francisco R.</h5>
-                            <span>Spain</span>
-                        </div>
-                    </div>
-                </div>
+                {% empty %}
+                <p>No reviews yet.</p>
+                {% endfor %}
             </div>
 
             <!-- Navigation dots/arrows (Visual only) -->
@@ -427,7 +424,8 @@
     <section class="section-partnership">
         <div class="container partnership-inner">
             <div class="partnership-logos">
-                <img src="{% static 'assets/logos/logo1.webp' %}" alt="Hong Kong Polytechnic University" class="partner-logo">
+                <img src="{% static 'assets/logos/logo1.webp' %}" alt="Hong Kong Polytechnic University"
+                    class="partner-logo">
                 <div class="logo-divider"></div>
                 <img src="{% static 'assets/img/edx_logo_black.png' %}" alt="edX" class="partner-logo-edx"
                     onerror="this.src='https://placehold.co/100x50/fff/000?text=edX'">
