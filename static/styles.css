@@ -1157,42 +1157,52 @@ footer {
 /* Filters & Tabs */
 .tabs-container {
     margin-bottom: 32px;
-    background: white;
-    border-radius: 8px 8px 0 0;
-    /* Suggested by card-like look */
+    width: 100%;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.tabs-container::-webkit-scrollbar {
+    display: none;
 }
 
 .tabs-list {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0;
-    background: #fcfcfc;
-    /* Slight contrast for the bar track */
-    padding: 0;
-    border-bottom: 1px solid #eee;
+    gap: 8px;
+    background: #f1f4f3;
+    padding: 6px;
+    border-radius: 12px;
+    min-width: 100%;
+    width: max-content;
+    box-sizing: border-box;
 }
 
 .tab-btn {
-    padding: 16px 24px;
+    padding: 12px 24px;
     font-family: var(--font-sans);
-    font-weight: 700;
-    color: #10312b;
-    /* Dark Teal */
+    font-weight: 600;
+    color: #4a5568;
     background: transparent;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.2s;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
     flex-shrink: 0;
 }
 
 .tab-btn:hover {
+    color: #10312b;
     background-color: rgba(16, 49, 43, 0.05);
 }
 
 .tab-btn.active {
-    background-color: #10312b;
-    color: white;
+    background-color: #ffffff;
+    color: #10312b;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* For the pill-style sub-filters */
@@ -2954,28 +2964,7 @@ textarea.form-input {
     }
 }
 
-/* Fix Tabs Container Responsiveness */
-@media (max-width: 900px) {
-    .tabs-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        border-radius: 8px;
-        /* Fix radius clipping */
-    }
-
-    .tabs-list {
-        display: flex;
-        flex-wrap: nowrap;
-        white-space: nowrap;
-        min-width: min-content;
-        /* Ensure connection */
-    }
-
-    .tab-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-    }
-}
+/* Removed specific Tabs Container Responsiveness as scrolling is now universal */
 
 /* Fix Stats Grid Responsiveness */
 @media (max-width: 900px) {
