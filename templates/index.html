@@ -532,8 +532,7 @@
                 <div class="tabs-list">
                     <button class="tab-btn active" data-category="all" onclick="setActiveTab(this)">All</button>
                     {% for category in trending_categories %}
-                    <button class="tab-btn" data-category="{{ category.slug }}" onclick="setActiveTab(this)">{{
-                        category.name }}</button>
+                    <button class="tab-btn" data-category="{{ category.slug }}" onclick="setActiveTab(this)">{{ category.name }}</button>
                     {% endfor %}
                 </div>
             </div>
