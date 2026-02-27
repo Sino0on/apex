@@ -152,10 +152,19 @@ class Subject(models.Model):
         return self.title
 
 
+icons = [
+    ('fa-book-open', 'fa-book-open'),
+    ('fa-user-friends', 'fa-user-friends'),
+    ('fa-video', 'fa-video'),
+    ('fa-clock', 'fa-clock'),
+    ('fa-certificate', 'fa-certificate'),
+    ('fa-globe', 'fa-globe'),
+]
+
 class Feature(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    icon = models.CharField(max_length=200)
+    icon = models.CharField(max_length=200, choices=icons)
     order = models.PositiveIntegerField(default=0)
 
     class Meta:
