@@ -201,8 +201,7 @@
                         <h1>{{ slide.title }}</h1>
                         <p>{{ slide.description }}</p>
                         {% if slide.button_text and slide.button_url %}
-                        <button class="slide-btn" onclick="window.location.href='{{ slide.button_url }}'">{{
-                            slide.button_text }}</button>
+                        <button class="slide-btn" onclick="window.location.href='{{ slide.button_url }}'">{{ slide.button_text }}</button>
                         {% endif %}
                     </div>
 
