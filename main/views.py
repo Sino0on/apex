@@ -1,6 +1,8 @@
 import json
 from django.core.serializers.json import DjangoJSONEncoder
-from .models import University, HomeSlide, CategorySubject, Feature, TrendingCategory, TrendingTopic, PopularTopic
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import University, HomeSlide, CategorySubject, Feature, TrendingCategory, TrendingTopic, PopularTopic, ZoomRegistration
 from django.shortcuts import render
 
 def index(request):
@@ -60,3 +62,29 @@ def category_detail(request):
 def univer(request, pk):
     university = University.objects.prefetch_related('instructors', 'reviews').get(pk=pk)
     return render(request, 'univer.html', {'university': university})
+
+@csrf_exempt
+def zoom_register(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            full_name = data.get('full_name')
+            phone = data.get('phone')
+            country = data.get('country')
+            email = data.get('email')
+            zoom_link = data.get('zoom_link')
+            
+            if full_name and email:
+                ZoomRegistration.objects.create(
+                    full_name=full_name,
+                    phone=phone,
+                    country=country,
+                    email=email,
+                    zoom_link=zoom_link
+                )
+                return JsonResponse({'status': 'success'})
+            else:
+                return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)

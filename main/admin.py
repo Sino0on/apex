@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import University, HomeSlide, CategorySubject, Subject, Feature, TrendingCategory, TrendingTopic, PopularTopic, Instructor, Review
+from .models import University, HomeSlide, CategorySubject, Subject, Feature, TrendingCategory, TrendingTopic, PopularTopic, Instructor, Review, ZoomRegistration
 
 class InstructorInline(admin.TabularInline):
     model = Instructor
@@ -66,3 +66,10 @@ class TrendingTopicAdmin(admin.ModelAdmin):
 class PopularTopicAdmin(admin.ModelAdmin):
     list_display = ('title', 'order')
     list_editable = ('order',)
+
+@admin.register(ZoomRegistration)
+class ZoomRegistrationAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'phone', 'country', 'created_at')
+    search_fields = ('full_name', 'email', 'phone', 'country')
+    readonly_fields = ('created_at',)
+    list_filter = ('created_at', 'country')

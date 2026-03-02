@@ -22,6 +22,99 @@
             background-size: cover;
             background-position: center;
         }
+
+        /* Zoom Registration Modal Styles */
+        .zoom-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .zoom-modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .zoom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            width: 90%;
+            max-width: 450px;
+            background: white;
+            border-radius: 12px;
+            z-index: 10000;
+            display: none;
+            opacity: 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .zoom-modal.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .zoom-modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .zoom-modal-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #1a1a1a;
+        }
+
+        .zoom-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .zoom-modal-close:hover {
+            color: #1a1a1a;
+        }
+
+        .zoom-modal-body {
+            padding: 24px;
+        }
+
+        .zoom-modal-body .mb-3 {
+            margin-bottom: 1rem;
+        }
+
+        .zoom-modal-body .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .zoom-modal-body .w-100 {
+            width: 100%;
+        }
+
+        .zoom-modal-body label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
@@ -201,7 +294,8 @@
                         <h1>{{ slide.title }}</h1>
                         <p>{{ slide.description }}</p>
                         {% if slide.button_text and slide.button_url %}
-                        <button class="slide-btn" onclick="window.location.href='{{ slide.button_url }}'">{{ slide.button_text }}</button>
+                        <button class="slide-btn" onclick="window.location.href='{{ slide.button_url }}'">{{
+                            slide.button_text }}</button>
                         {% endif %}
                     </div>
 
@@ -244,8 +338,7 @@
                             </div>
                             <div class="slide-card-footer">
                                 {% if slide.card_1_link %}
-                                <button class="slide-card-btn"
-                                    onclick="window.open('{{ slide.card_1_link }}', '_blank')">
+                                <button class="slide-card-btn" onclick="openZoomModal('{{ slide.card_1_link }}')">
                                     <i class="fas fa-video"></i> Zoom Link
                                 </button>
                                 {% endif %}
@@ -271,8 +364,7 @@
                             </div>
                             <div class="slide-card-footer">
                                 {% if slide.card_2_link %}
-                                <button class="slide-card-btn"
-                                    onclick="window.open('{{ slide.card_2_link }}', '_blank')">
+                                <button class="slide-card-btn" onclick="openZoomModal('{{ slide.card_2_link }}')">
                                     <i class="fas fa-video"></i> Zoom Link
                                 </button>
                                 {% endif %}
@@ -310,144 +402,95 @@
                 <!-- First set of logos -->
                 <div class="partners-track">
                     <a href="https://www.empirecommercesolutions.com/">
-                    <img src="{% static 'assets/logos/new/Bali_Global_Empire-removebg-preview.png' %}"
-                        alt="CATS College" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Bali_Global_Empire-removebg-preview.png' %}"
+                            alt="CATS College" class="partner-logo">
+                    </a>
                     <a href="https://www.cats.edu.my/">
-                    <img src="{% static 'assets/logos/new/CATS_College_logo_design-removebg-preview (2).png' %}"
-                        alt="City of Manchester" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/CATS_College_logo_design-removebg-preview (2).png' %}"
+                            alt="City of Manchester" class="partner-logo">
+                    </a>
                     <a href="https://www.daebakdiaries.com/">
-                    <img src="{% static 'assets/logos/new/Daebak_Diaries.png' %}"
-                        alt="Daebak Diaries" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Daebak_Diaries.png' %}" alt="Daebak Diaries"
+                            class="partner-logo">
+                    </a>
                     <a href="">
-                    <img src="{% static 'assets/logos/new/CITY_OF_MANCHESTER_-_-removebg-preview.png' %}"
-                        alt="Empire Global" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/CITY_OF_MANCHESTER_-_-removebg-preview.png' %}"
+                            alt="Empire Global" class="partner-logo">
+                    </a>
                     <a href="https://www.empireglobalrecruitment.com/">
-                    <img src="{% static 'assets/logos/new/Empire_Global_Recruitment_logo_design-removebg-preview.png' %}"
-                        alt="Empire Global Recruitment" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Empire_Global_Recruitment_logo_design-removebg-preview.png' %}"
+                            alt="Empire Global Recruitment" class="partner-logo">
+                    </a>
                     <a href="https://cityu.edu.eu/">
-                    <img src="{% static 'assets/logos/new/EUROPEAN_CITY_OF_UNIVERSITY__ECU_-removebg-preview (1).png' %}"
-                        alt="Empire Commerce Solutions" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/EUROPEAN_CITY_OF_UNIVERSITY__ECU_-removebg-preview (1).png' %}"
+                            alt="Empire Commerce Solutions" class="partner-logo">
+                    </a>
                     <a href="">
-                    <img src="{% static 'assets/logos/new/Fortress_Global_Middle_East_-removebg-preview.png' %}"
-                        alt="European City of University" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Fortress_Global_Middle_East_-removebg-preview.png' %}"
+                            alt="European City of University" class="partner-logo">
+                    </a>
                     <a href="https://www.hopebuilders-sg.com/">
-                    <img src="{% static 'assets/logos/new/Hope_builder_flower_badge_design-removebg-preview.png' %}"
-                        alt="Fortress Global Middle East" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Hope_builder_flower_badge_design-removebg-preview.png' %}"
+                            alt="Fortress Global Middle East" class="partner-logo">
+                    </a>
                     <a href="https://www.imtc.my/">
-                    <img src="{% static 'assets/logos/new/IMTC_LOGO-removebg-preview.png' %}" alt="IMTC"
-                        class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/IMTC_LOGO-removebg-preview.png' %}" alt="IMTC"
+                            class="partner-logo">
+                    </a>
                     <a href="https://www.insan-college.com/">
-                    <img src="{% static 'assets/logos/new/INSAN_College_E-Learning-removebg-preview (2).png' %}"
-                        alt="INSAN College" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/INSAN_College_E-Learning-removebg-preview (2).png' %}"
+                            alt="INSAN College" class="partner-logo">
+                    </a>
                     <a href="https://iaula.edu/">
-                    <img src="{% static 'assets/logos/new/INTERNATIONAL_AMERICAN_UNIVERSITY__IAU_-removebg-preview (1).png' %}"
-                        alt="International American University" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/INTERNATIONAL_AMERICAN_UNIVERSITY__IAU_-removebg-preview (1).png' %}"
+                            alt="International American University" class="partner-logo">
+                    </a>
                     <a href="https://wwwk.kangwon.ac.kr/english/index.do">
-                    <img src="{% static 'assets/logos/new/Kangwon_National_University_logo_design-removebg-preview.png' %}"
-                        alt="Kangwon National University" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Kangwon_National_University_logo_design-removebg-preview.png' %}"
+                            alt="Kangwon National University" class="partner-logo">
+                    </a>
                     <a href="http://kingston.edu.sg/">
-                    <img src="{% static 'assets/logos/new/KIC-removebg-preview.png' %}" alt="KIC" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/KIC-removebg-preview.png' %}" alt="KIC"
+                            class="partner-logo">
+                    </a>
                     <a href="https://www.klcsingapore.com/">
-                    <img src="{% static 'assets/logos/new/KLC-removebg-preview.png' %}" alt="KLC" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/KLC-removebg-preview.png' %}" alt="KLC"
+                            class="partner-logo">
+                    </a>
                     <a href="">
-                    <img src="{% static 'assets/logos/new/Leaders_in_commerce-removebg-preview.png' %}" alt="LCCI"
-                        class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Leaders_in_commerce-removebg-preview.png' %}" alt="LCCI"
+                            class="partner-logo">
+                    </a>
                     <a href="https://ocu.university/">
-                    <img src="{% static 'assets/logos/new/Orange_County_University_logo_design-removebg-preview (1).png' %}"
-                        alt="Leaders in Commerce" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Orange_County_University_logo_design-removebg-preview (1).png' %}"
+                            alt="Leaders in Commerce" class="partner-logo">
+                    </a>
                     <a href="https://www.recardme.com/">
-                    <img src="{% static 'assets/logos/new/RecardMe_logo_with_vibrant_folder_icon-removebg-preview.png' %}"
-                        alt="Orange County University" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/RecardMe_logo_with_vibrant_folder_icon-removebg-preview.png' %}"
+                            alt="Orange County University" class="partner-logo">
+                    </a>
                     <a href="">
-                    <img src="{% static 'assets/logos/new/Screenshot 2026-01-28 at 4.53.41 PM (7).png' %}"
-                        alt="RecardMe" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Screenshot 2026-01-28 at 4.53.41 PM (7).png' %}"
+                            alt="RecardMe" class="partner-logo">
+                    </a>
                     <a href="www.udajpcentre.com">
-                    <img src="{% static 'assets/logos/new/UDA_CENTRE-removebg-preview.png' %}" alt="Partner"
-                        class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/UDA_CENTRE-removebg-preview.png' %}" alt="Partner"
+                            class="partner-logo">
+                    </a>
                     <a href="https://www.sg-upgrade.com/">
-                    <img src="{% static 'assets/logos/new/UPGRADE_ENTERPRISE-removebg-preview.png' %}"
-                        alt="Upgrade Enterprise" class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/UPGRADE_ENTERPRISE-removebg-preview.png' %}"
+                            alt="Upgrade Enterprise" class="partner-logo">
+                    </a>
                     <a href="">
-                    <img src="{% static 'assets/logos/new/Upmind_Camp-removebg-preview.png' %}" alt="Upmind Camp"
-                        class="partner-logo">
-                        </a>
+                        <img src="{% static 'assets/logos/new/Upmind_Camp-removebg-preview.png' %}" alt="Upmind Camp"
+                            class="partner-logo">
+                    </a>
                 </div>
 
             </div>
         </div>
     </div>
 
-    <!-- Explore Top Subjects Section -->
-    <section class="section-explore-subjects">
-        <div class="container">
-            <h2 class="explore-title">Explore top subjects</h2>
-
-            <!-- Tabs -->
-            <div class="explore-tabs" id="exploreTabs">
-                {% for category in categories %}
-                <button class="explore-tab {% if forloop.first %}active{% endif %}" data-category="{{ category.slug }}"
-                    onclick="selectExploreCategory('{{ category.slug }}')">
-                    {% if category.svg_icon %}
-                    <!-- Assuming svg_icon is an image/svg file -->
-                    <img src="{{ category.svg_icon.url }}" alt=""
-                        style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;">
-                    {% endif %}
-                    {{ category.title }}
-                </button>
-                {% endfor %}
-            </div>
-
-            <!-- Content Area -->
-            <div class="explore-content" id="exploreContent">
-                <!-- Content will be loaded via JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Services Section -->
-    <section class="section-services">
-        <div class="container">
-            <div class="services-header">
-                <h2 class="services-title">Our Services</h2>
-                <p class="services-subtitle">Discover our comprehensive range of educational services designed to meet
-                    your learning needs</p>
-            </div>
-
-            <div class="services-grid">
-                <!-- Service 1 -->
-                {% for i in features %}
-                <div class="service-card">
-                    <div class="service-icon-box">
-                        <i class="fas {{i.icon}}"></i>
-                    </div>
-                    <h3>{{i.title}}</h3>
-                    <p>{{i.description}}</p>
-                </div>
-
-                {% endfor %}
-            </div>
-        </div>
-    </section>
 
     <!-- Featured Program Section -->
     <section class="section-featured-program">
@@ -536,7 +579,7 @@
                 </div>
             </div>
 
-            
+
         </div>
 
         <div class="course-grid">
@@ -547,15 +590,17 @@
                     data-topic="{% if univer.trending_topic %}{{ univer.trending_topic.slug }}{% else %}all{% endif %}">
                     <div class="card-img"
                         style="background-image: url('{% if univer.image %}{{ univer.image.url }}{% else %}{% static 'assets/img/courses/8c5c1af9-761b-49b4-9f52-f6f48856d906-569ce5564e34.webp' %}{% endif %}');">
-                        <div class="card-logo-overlay">
-                            <img src="{{ univer.logo.url }}" alt="Pro Logo">
-                        </div>
                     </div>
                     <div class="card-body">
-                        <!-- <span class="card-partner">HarvardX</span> -->
-                        <h3 class="card-title">{{ univer.title }}</h3>
-                        <p class="card-meta">{{ univer.mini_description }}</p>
-                        <!-- <span class="badge">Professional Certificate</span> -->
+                        <div class="card-body-logo">
+                            <img src="{{ univer.logo.url }}" alt="Pro Logo">
+                        </div>
+                        <div class="card-body-text">
+                            <!-- <span class="card-partner">HarvardX</span> -->
+                            <h3 class="card-title">{{ univer.title }}</h3>
+                            <p class="card-meta">{{ univer.mini_description }}</p>
+                            <!-- <span class="badge">Professional Certificate</span> -->
+                        </div>
                     </div>
                 </div>
             </a>
@@ -795,31 +840,6 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="section-stats">
-        <div class="container">
-            <h2 style="margin-bottom: 48px; font-size: 2rem;">Our Global Impact</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>100K+</h3>
-                    <p>LEARNERS SERVED</p>
-                </div>
-                <div class="stat-item">
-                    <h3>5000+</h3>
-                    <p>SATISFIED CLIENTS</p>
-                </div>
-                <div class="stat-item">
-                    <h3>10K+ </h3>
-                    <p>Careers secured for candidates</p>
-                </div>
-                <div class="stat-item">
-                    <h3>40+</h3>
-                    <p>Offices world wide</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Learning Formats Section -->
     <section class="section-learning-formats">
         <div class="container">
@@ -987,6 +1007,31 @@
             </div>
         </div>
     </section> -->
+
+    <!-- Stats Section -->
+    <section class="section-stats">
+        <div class="container">
+            <h2 style="margin-bottom: 48px; font-size: 2rem;">Our Global Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>100K+</h3>
+                    <p>LEARNERS SERVED</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5000+</h3>
+                    <p>SATISFIED CLIENTS</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10K+ </h3>
+                    <p>Careers secured for candidates</p>
+                </div>
+                <div class="stat-item">
+                    <h3>40+</h3>
+                    <p>Offices world wide</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Testimonials -->
     <section class="section-testimonials">
@@ -1179,6 +1224,37 @@
             </div>
         </div>
     </footer>
+
+    <!-- Zoom Registration Modal -->
+    <div class="zoom-modal-overlay" id="zoomModalOverlay"></div>
+    <div class="zoom-modal" id="zoomModal">
+        <div class="zoom-modal-header">
+            <h3>Registration before zoom link</h3>
+            <button class="zoom-modal-close" onclick="closeZoomModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="zoom-modal-body">
+            <form id="zoomRegistrationForm" onsubmit="submitZoomRegistration(event)">
+                <div class="form-group mb-3">
+                    <label>Full Name</label>
+                    <input type="text" id="zoomFullName" class="form-input" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Phone</label>
+                    <input type="tel" id="zoomPhone" class="form-input" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Country</label>
+                    <input type="text" id="zoomCountry" class="form-input" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Email</label>
+                    <input type="email" id="zoomEmail" class="form-input" required>
+                </div>
+                <button type="submit" class="contact-btn w-100" id="zoomSubmitBtn">Submit & Go to Zoom</button>
+                <div id="zoomFormStatus" class="mt-2" style="font-size: 0.9rem;"></div>
+            </form>
+        </div>
+    </div>
 
     <script>
         // Filtering and Tabs Logic
@@ -1399,6 +1475,68 @@
         const firstTab = document.querySelector('.explore-tab.active');
         if (firstTab) {
             selectExploreCategory(firstTab.dataset.category);
+        }
+
+        // Zoom Registration Logic
+        let currentZoomLink = '';
+
+        function openZoomModal(link) {
+            currentZoomLink = link;
+            document.getElementById('zoomModalOverlay').classList.add('active');
+            document.getElementById('zoomModal').classList.add('active');
+            // reset form and status
+            document.getElementById('zoomRegistrationForm').reset();
+            document.getElementById('zoomFormStatus').innerHTML = '';
+            document.getElementById('zoomFormStatus').className = 'mt-2';
+            document.getElementById('zoomSubmitBtn').disabled = false;
+        }
+
+        function closeZoomModal() {
+            document.getElementById('zoomModalOverlay').classList.remove('active');
+            document.getElementById('zoomModal').classList.remove('active');
+            currentZoomLink = '';
+        }
+
+        async function submitZoomRegistration(e) {
+            e.preventDefault();
+            const btn = document.getElementById('zoomSubmitBtn');
+            const statusDiv = document.getElementById('zoomFormStatus');
+            btn.disabled = true;
+            statusDiv.innerHTML = '<span style="color: #666;">Submitting...</span>';
+
+            const payload = {
+                full_name: document.getElementById('zoomFullName').value,
+                phone: document.getElementById('zoomPhone').value,
+                country: document.getElementById('zoomCountry').value,
+                email: document.getElementById('zoomEmail').value,
+                zoom_link: currentZoomLink
+            };
+
+            try {
+                const response = await fetch('/zoom-register/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    statusDiv.innerHTML = '<span style="color: green;">Registration successful! Redirecting...</span>';
+                    setTimeout(() => {
+                        window.open(currentZoomLink, '_blank');
+                        closeZoomModal();
+                    }, 500);
+                } else {
+                    statusDiv.innerHTML = `<span style="color: red;">Error: ${data.message}</span>`;
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                statusDiv.innerHTML = `<span style="color: red;">An error occurred. Please try again.</span>`;
+                btn.disabled = false;
+            }
         }
     </script>
 </body>

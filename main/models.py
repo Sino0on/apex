@@ -217,3 +217,19 @@ class TrendingTopic(models.Model):
 
     def __str__(self):
         return self.name
+
+class ZoomRegistration(models.Model):
+    full_name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=50)
+    country = models.CharField(max_length=100)
+    email = models.EmailField()
+    zoom_link = models.URLField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Zoom Registration'
+        verbose_name_plural = 'Zoom Registrations'
+
+    def __str__(self):
+        return f"{self.full_name} - {self.email}"

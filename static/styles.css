@@ -1006,6 +1006,28 @@ header {
 
 .card-body {
     padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.card-body-logo {
+    flex-shrink: 0;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-body-logo img {
+    max-width: 100%;
+    max-height: 60px;
+    height: auto;
+    object-fit: contain;
+}
+
+.card-body-text {
+    flex: 1;
 }
 
 .card-partner {
@@ -1158,24 +1180,17 @@ footer {
 .tabs-container {
     margin-bottom: 32px;
     width: 100%;
-    overflow-x: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.tabs-container::-webkit-scrollbar {
-    display: none;
 }
 
 .tabs-list {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
     background: #f1f4f3;
     padding: 6px;
     border-radius: 12px;
-    min-width: 100%;
-    width: max-content;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -1190,7 +1205,6 @@ footer {
     cursor: pointer;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    flex-shrink: 0;
 }
 
 .tab-btn:hover {
