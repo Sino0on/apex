@@ -12,7 +12,8 @@ class ReviewInline(admin.TabularInline):
 @admin.register(University)
 class UniversityAdmin(admin.ModelAdmin):
     inlines = [InstructorInline, ReviewInline]
-    list_display = ('title', 'trending_category', 'trending_topic', 'updated_at')
+    list_display = ('title', 'orders', 'trending_category', 'trending_topic', 'updated_at')
+    list_editable = ('orders',)
     search_fields = ('title', 'description')
 
 @admin.register(HomeSlide)

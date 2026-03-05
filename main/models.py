@@ -3,6 +3,7 @@ from django.db import models
 
 class University(models.Model):
     title = models.CharField(max_length=100)
+    orders = models.PositiveIntegerField(default=0, help_text="Порядок сортировки")
     logo = models.ImageField(upload_to='university_logos/')
     image = models.ImageField(upload_to='university_images/', blank=True, null=True)
     description = models.TextField()
@@ -48,7 +49,7 @@ class University(models.Model):
     class Meta:
         verbose_name = 'University'
         verbose_name_plural = 'Universities'
-        ordering = ['-updated_at']
+        ordering = ['orders', '-updated_at']
 
 
 class Instructor(models.Model):
