@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Apex</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .privacy-policy-section {
+            padding: 120px 24px 80px;
+            /* added top padding to clear header */
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 60vh;
+        }
+
+        .privacy-policy-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .privacy-policy-header h1 {
+            font-size: 2.5rem;
+            color: var(--brand-dark);
+            margin-bottom: 16px;
+        }
+
+        .privacy-policy-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .privacy-policy-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .privacy-policy-content h2,
+        .privacy-policy-content h3 {
+            color: var(--brand-dark);
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+
+        .privacy-policy-content p {
+            margin-bottom: 16px;
+        }
+
+        .privacy-policy-content ul,
+        .privacy-policy-content ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .privacy-policy-content a {
+            color: var(--brand-main);
+            text-decoration: none;
+        }
+
+        .privacy-policy-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Default message if no policy */
+        .no-policy {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 60px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div style="display: flex; align-items: center;">
+                <a href="/" class="logo">
+                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 472 478"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M211.552 4.45888C157.331 12.3859 111.492 35.6569 74.3295 74.1239C-32.2806 184.479 -6.69086 367.373 126.065 443.883C141.985 453.058 153.015 457.725 173.341 463.887C194.448 470.286 206.205 472.623 224.702 474.097C244.928 475.709 268.295 474.037 289.387 469.467C305.522 465.971 331.322 455.188 350.102 444.092C352.98 442.391 355.764 441 356.289 441C356.859 441 357.243 447.855 357.243 458V475H410.63H464.017L464.013 343.75C464.01 231.717 463.788 211.109 462.505 203C455.793 160.58 438.901 122.179 412.585 89.5159C404.122 79.0099 385.81 60.8169 375.494 52.6649C348.027 30.9569 313.071 14.6339 278.756 7.49088C257.662 3.10088 229.528 1.83088 211.552 4.45888ZM210.055 96.5369C192.042 99.8619 172.591 107.853 156.732 118.445C147.01 124.938 131.136 140.294 123.222 150.861C111.402 166.644 102.076 187.562 97.6072 208.312C95.784 216.781 95.4118 221.705 95.4058 237.5C95.3989 254.788 95.6493 257.581 98.1869 268.5C104.882 297.31 117.052 319.508 137.128 339.533C174.024 376.333 226.175 389.028 275.852 373.302C315.856 360.638 349.715 327.369 364.193 286.5C382.803 233.97 370.175 175.461 331.797 136.401C312.712 116.977 290.383 104.365 263.453 97.7999C252.15 95.0439 222.004 94.3309 210.055 96.5369Z"
+                            fill="#FF6702"></path>
+                    </svg>
+                </a>
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="What do you want to learn?">
+                </div>
+                <nav class="nav-links">
+                    <a href="{% url 'index' %}" style="font-weight: bold;" class="nav-item">Home</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="privacy-policy-section">
+        {% if policy %}
+        <div class="privacy-policy-header">
+            <h1>{{ policy.title }}</h1>
+            <p>Last updated: {{ policy.updated_at|date:"F j, Y" }}</p>
+        </div>
+
+        <div class="privacy-policy-content ck-content">
+            {{ policy.content|safe }}
+        </div>
+        {% else %}
+        <div class="privacy-policy-header">
+            <h1>Privacy Policy</h1>
+        </div>
+
+        <div class="privacy-policy-content">
+            <div class="no-policy">
+                <h3>Privacy Policy is not yet available.</h3>
+                <p>Please check back later.</p>
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="padding-right: 40px;">
+                    <a href="/" class="logo" style="display: block; margin-bottom: 24px;">edX</a>
+                    <p style="color: #666; font-size: 0.9rem;">As a global nonprofit, we're on a mission to transform
+                        education and make it accessible to everyone, everywhere.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>edX</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2024 edX LLC. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

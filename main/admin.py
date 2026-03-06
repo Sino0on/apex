@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import University, HomeSlide, CategorySubject, Subject, Feature, TrendingCategory, TrendingTopic, PopularTopic, Instructor, Review, ZoomRegistration
+from .models import University, HomeSlide, CategorySubject, Subject, Feature, TrendingCategory, TrendingTopic, PopularTopic, Instructor, Review, ZoomRegistration, BusinessService, ServiceFeature, PrivacyPolicy
 
 class InstructorInline(admin.TabularInline):
     model = Instructor
@@ -74,3 +74,17 @@ class ZoomRegistrationAdmin(admin.ModelAdmin):
     search_fields = ('full_name', 'email', 'phone', 'country')
     readonly_fields = ('created_at',)
     list_filter = ('created_at', 'country')
+class ServiceFeatureInline(admin.TabularInline):
+    model = ServiceFeature
+    extra = 1
+
+@admin.register(BusinessService)
+class BusinessServiceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'icon_class', 'color_class', 'order')
+    list_editable = ('order',)
+    inlines = [ServiceFeatureInline]
+
+@admin.register(PrivacyPolicy)
+class PrivacyPolicyAdmin(admin.ModelAdmin):
+    list_display = ('title', 'updated_at')
+

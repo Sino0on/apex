@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class University(models.Model):
@@ -234,3 +235,50 @@ class ZoomRegistration(models.Model):
 
     def __str__(self):
         return f"{self.full_name} - {self.email}"
+
+
+class BusinessService(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    detailed_description = RichTextUploadingField(blank=True, null=True, help_text="Detailed description for the separate page")
+    image = models.ImageField(upload_to='business_services/', blank=True, null=True, help_text="Image for the detailed page")
+    icon_class = models.CharField(max_length=50, help_text="FontAwesome class, e.g., 'fas fa-book'")
+    color_class = models.CharField(max_length=50, help_text="CSS class for color, e.g., 'format-beige'")
+    link = models.CharField(max_length=200, blank=True, null=True, help_text="Optional external link")
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Business Service'
+        verbose_name_plural = 'Business Services'
+
+    def __str__(self):
+        return self.title
+
+
+class ServiceFeature(models.Model):
+    service = models.ForeignKey(BusinessService, on_delete=models.CASCADE, related_name='features')
+    text = models.CharField(max_length=255)
+    icon_class = models.CharField(max_length=50, default='far fa-clock', help_text="FontAwesome icon class (e.g., 'far fa-clock')")
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Service Feature'
+        verbose_name_plural = 'Service Features'
+
+    def __str__(self):
+        return f"{self.service.title} - {self.text}"
+
+
+class PrivacyPolicy(models.Model):
+    title = models.CharField(max_length=200, default="Privacy Policy")
+    content = RichTextUploadingField(help_text="Content of the Privacy Policy")
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Privacy Policy'
+        verbose_name_plural = 'Privacy Policies'
+
+    def __str__(self):
+        return self.title

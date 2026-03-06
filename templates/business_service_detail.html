@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ service.title }} - Apex</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --surface-color: #ffffff;
+            --surface-hover: #f8f9fa;
+        }
+
+        /* Hero Section for Detail Page */
+        .service-hero {
+            position: relative;
+            padding: 160px 0 120px;
+            background: linear-gradient(135deg, var(--brand-dark) 0%, rgba(32, 10, 70, 0.95) 100%);
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .service-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+                {
+                % if service.image and service.image.name %
+            }
+
+            background: url('{{ service.image.url }}') center/cover;
+            opacity: 0.15;
+
+                {
+                % endif %
+            }
+
+            z-index: 1;
+        }
+
+        .service-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+            animation: slideUpFade 0.8s ease-out;
+        }
+
+        .service-hero-icon {
+            display: inline-flex;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .service-hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content Layout */
+        .service-main-wrapper {
+            max-width: 1200px;
+            margin: -60px auto 80px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 992px) {
+            .service-main-wrapper {
+                grid-template-columns: 1fr;
+                margin-top: -30px;
+            }
+
+            .service-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Left Content Column */
+        .service-content-card {
+            background: var(--surface-color);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .service-content-card {
+                padding: 32px 24px;
+            }
+        }
+
+        .service-image-cover {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .ck-content h2,
+        .ck-content h3 {
+            color: var(--brand-dark);
+            margin: 32px 0 16px;
+            font-weight: 700;
+        }
+
+        .ck-content p {
+            margin-bottom: 16px;
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .ck-content ul,
+        .ck-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .ck-content li {
+            margin-bottom: 12px;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        /* Right Sidebar Column */
+        .service-sidebar {
+            position: sticky;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-card {
+            background: var(--surface-color);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-title i {
+            color: var(--brand-main);
+        }
+
+        .highlight-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .highlight-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .highlight-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 103, 2, 0.1);
+            color: var(--brand-main);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover .highlight-icon {
+            background: var(--brand-main);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 103, 2, 0.3);
+        }
+
+        .highlight-text {
+            font-weight: 600;
+            color: var(--brand-dark);
+            line-height: 1.4;
+        }
+
+        .action-card {
+            background: linear-gradient(135deg, var(--brand-main) 0%, #ff8a3d 100%);
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(255, 103, 2, 0.3);
+        }
+
+        .action-card h3 {
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .action-card p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--brand-main);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: var(--brand-main);
+        }
+
+        .back-nav {
+            position: absolute;
+            top: 100px;
+            left: 5%;
+            z-index: 100;
+        }
+
+        .back-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .back-nav a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header style="background: transparent; position: absolute; top:0; left:0; width:100%; z-index: 1000;">
+        <div class="container header-inner" style="border: none;">
+            <div style="display: flex; align-items: center;">
+                <a href="/" class="logo" style="color: white;">
+                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 472 478"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M211.552 4.45888C157.331 12.3859 111.492 35.6569 74.3295 74.1239C-32.2806 184.479 -6.69086 367.373 126.065 443.883C141.985 453.058 153.015 457.725 173.341 463.887C194.448 470.286 206.205 472.623 224.702 474.097C244.928 475.709 268.295 474.037 289.387 469.467C305.522 465.971 331.322 455.188 350.102 444.092C352.98 442.391 355.764 441 356.289 441C356.859 441 357.243 447.855 357.243 458V475H410.63H464.017L464.013 343.75C464.01 231.717 463.788 211.109 462.505 203C455.793 160.58 438.901 122.179 412.585 89.5159C404.122 79.0099 385.81 60.8169 375.494 52.6649C348.027 30.9569 313.071 14.6339 278.756 7.49088C257.662 3.10088 229.528 1.83088 211.552 4.45888ZM210.055 96.5369C192.042 99.8619 172.591 107.853 156.732 118.445C147.01 124.938 131.136 140.294 123.222 150.861C111.402 166.644 102.076 187.562 97.6072 208.312C95.784 216.781 95.4118 221.705 95.4058 237.5C95.3989 254.788 95.6493 257.581 98.1869 268.5C104.882 297.31 117.052 319.508 137.128 339.533C174.024 376.333 226.175 389.028 275.852 373.302C315.856 360.638 349.715 327.369 364.193 286.5C382.803 233.97 370.175 175.461 331.797 136.401C312.712 116.977 290.383 104.365 263.453 97.7999C252.15 95.0439 222.004 94.3309 210.055 96.5369Z"
+                            fill="#ffffff"></path>
+                    </svg>
+                </a>
+                <nav class="nav-links" style="margin-left: auto;">
+                    <a href="{% url 'index' %}" style="font-weight: 600; color: white;" class="nav-item">Home</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Back Navigation -->
+    <div class="back-nav">
+        <a href="{% url 'index' %}"><i class="fas fa-arrow-left"></i> All Services</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="service-hero-content">
+            <div class="service-hero-icon">
+                <i class="{{ service.icon_class }}"></i>
+            </div>
+            <h1>{{ service.title }}</h1>
+            <p>{{ service.description }}</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="service-main-wrapper">
+
+        <!-- Left Column: Content -->
+        <div class="service-content-card">
+            {% if service.image and service.image.name %}
+            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-image-cover">
+            {% endif %}
+
+            <div class="ck-content">
+                {% if service.detailed_description %}
+                {{ service.detailed_description|safe }}
+                {% else %}
+                <div style="text-align: center; padding: 40px 0; color: var(--text-muted);">
+                    <i class="fas fa-file-alt" style="font-size: 3rem; margin-bottom: 16px; opacity: 0.5;"></i>
+                    <h3>Detailed information coming soon.</h3>
+                    <p>We are still updating this section. Please check back later.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Right Column: Sidebar -->
+        <aside class="service-sidebar">
+
+            {% if service.features.exists %}
+            <div class="sidebar-card">
+                <h3 class="sidebar-title"><i class="fas fa-star"></i> Key Highlights</h3>
+                <ul class="highlight-list">
+                    {% for feature in service.features.all %}
+                    <li class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="{{ feature.icon_class|default:'fas fa-check' }}"></i>
+                        </div>
+                        <span class="highlight-text">{{ feature.text }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if service.link %}
+            <div class="sidebar-card action-card">
+                <h3>Take Action</h3>
+                <p>Ready to start moving forward? Follow the resource link to begin your journey with our services.</p>
+                <a href="{{ service.link }}" class="btn-white" target="_blank">
+                    Explore Now <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            {% endif %}
+
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="padding-right: 40px;">
+                    <a href="/" class="logo" style="display: block; margin-bottom: 24px;">edX</a>
+                    <p style="color: #666; font-size: 0.9rem;">As a global nonprofit, we're on a mission to transform
+                        education and make it accessible to everyone, everywhere.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>edX</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2024 edX LLC. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

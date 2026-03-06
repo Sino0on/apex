@@ -575,7 +575,9 @@
                 <div class="tabs-list">
                     <button class="tab-btn active" data-category="all" onclick="setActiveTab(this)">All</button>
                     {% for category in trending_categories %}
-                    <button class="tab-btn" data-category="{{ category.slug }}" onclick="setActiveTab(this)">{{ category.name }}</button>
+                    <button class="tab-btn" data-category="{{ category.slug }}" onclick="setActiveTab(this)">
+                        {{ category.name }}
+                    </button>
                     {% endfor %}
                 </div>
             </div>
@@ -851,145 +853,32 @@
             </div>
 
             <div class="formats-grid">
-                <!-- Individual Courses -->
-                <div class="format-card format-beige">
+                {% for service in business_services %}
+                <div class="format-card {{ service.color_class }}">
                     <div class="format-icon">
-                        <i class="fas fa-book"></i>
+                        <i class="{{ service.icon_class }}"></i>
                     </div>
-                    <h3 class="format-name">IT SOLUTIONS (RECARDME)</h3>
-                    <p class="format-desc">Learn a new skill anywhere, anytime.</p>
+                    <h3 class="format-name">{{ service.title }}</h3>
+                    <p class="format-desc">{{ service.description }}</p>
 
                     <ul class="format-features">
-                        <li><i class="far fa-clock"></i> 6 months study + 6 months internship</li>
-                        <li><i class="fas fa-certificate"></i> Earn a verified certificate</li>
-                        <li><i class="fas fa-chart-line"></i> Upskill quickly</li>
+                        {% for feature in service.features.all %}
+                        <li><i class="{{ feature.icon_class }}"></i> {{ feature.text }}</li>
+                        {% endfor %}
                     </ul>
 
-                    <a href="#" class="btn-format">FIND OUT MORE</a>
+                    <a href="{% url 'business_service_detail' service.pk %}" class="btn btn-format">
+                        FIND OUT MORE <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
                 </div>
-
-                <!-- Certificate Programs -->
-                <div class="format-card format-light">
-                    <div class="format-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3 class="format-name">MARKETING SOLUTIONS</h3>
-                    <p class="format-desc">Advanced diploma In business management</p>
-
-                    <ul class="format-features">
-                        <li><i class="far fa-clock"></i> 12 months duration</li>
-                        <li><i class="fas fa-certificate"></i> Earn multiple certificates</li>
-                        <li><i class="fas fa-chart-line"></i> Upskill on a deeper level</li>
-                    </ul>
-
-                    <a href="#" class="btn-format">FIND OUT MORE</a>
-                </div>
-
-                <!-- Executive Education -->
-                <div class="format-card format-teal">
-                    <div class="format-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3 class="format-name">INTERNSHIP COLLABARATION OPPORTUNITY</h3>
-                    <p class="format-desc">Postgraduate diploma In business management</p>
-
-                    <ul class="format-features">
-                        <li><i class="far fa-clock"></i> 12 months duration</li>
-                        <li><i class="fas fa-certificate"></i> Earn credentials</li>
-                        <li><i class="fas fa-chart-line"></i> Grow career critical skills</li>
-                    </ul>
-
-                    <a href="#" class="btn-format">FIND OUT MORE</a>
-                </div>
-
-                <!-- Online Degrees
-                <div class="format-card format-light">
-                    <div class="format-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="format-name">Online degrees</h3>
-                    <p class="format-desc">Earn your degree from a prestigious university.</p>
-
-                    <ul class="format-features">
-                        <li><i class="far fa-clock"></i> 1.5-3 years</li>
-                        <li><i class="fas fa-certificate"></i> Earn a degree</li>
-                        <li><i class="fas fa-chart-line"></i> Become an expert</li>
-                    </ul>
-
-                    <a href="#" class="btn-format">Explore degrees</a>
-                </div> -->
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
             </div>
             <br>
             <br>
             <br>
             <div class="formats-grid">
-                <!-- Individual Courses -->
-                <div class="format-card format-beige">
-                    <div class="format-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3 class="format-name">OVERSEAS CAREER OPORTUNITIES</h3>
-                    <p class="format-desc">International American University: Bachelor of Business Administration</p>
-
-                    <ul class="format-features">
-                        <li><i class="far fa-clock"></i> 1 year duration (online)</li>
-                        <li><i class="fas fa-certificate"></i> Earn a verified certificate</li>
-                        <li><i class="fas fa-chart-line"></i> Upskill quickly</li>
-                    </ul>
-
-                    <a href="#" class="btn-format">FIND OUT MORE</a>
-                </div>
-
-                <!-- Certificate Programs -->
-                <div class="format-card format-light">
-                    <div class="format-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3 class="format-name">SALES COMMUNITY</h3>
-                    <p class="format-desc">International American University: Bachelor of Business Administration</p>
-
-                    <ul class="format-features">
-                        <li><i class="far fa-clock"></i> 1-2 years duration in America (offline)</li>
-                        <li><i class="fas fa-certificate"></i> Earn multiple certificates</li>
-                        <li><i class="fas fa-chart-line"></i> Upskill on a deeper level</li>
-                    </ul>
-
-                    <a href="#" class="btn-format">FIND OUT MORE</a>
-                </div>
-
-                <!-- Executive Education -->
-                <div class="format-card format-teal">
-                    <div class="format-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3 class="format-name">FRANCHISE OPPORTUNITIES</h3>
-                    <p class="format-desc">International American University: Bachelor of Business Administration</p>
-
-                    <ul class="format-features">
-                        <li><i class="far fa-clock"></i>1-2 years duration in America (offline)</li>
-                        <li><i class="fas fa-certificate"></i> Earn credentials</li>
-                        <li><i class="fas fa-chart-line"></i> Grow career critical skills</li>
-                    </ul>
-
-                    <a href="#" class="btn-format">FIND OUT MORE</a>
-                </div>
-
-                <!-- Online Degrees
-                <div class="format-card format-light">
-                    <div class="format-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="format-name">Online degrees</h3>
-                    <p class="format-desc">Earn your degree from a prestigious university.</p>
-
-                    <ul class="format-features">
-                        <li><i class="far fa-clock"></i> 1.5-3 years</li>
-                        <li><i class="fas fa-certificate"></i> Earn a degree</li>
-                        <li><i class="fas fa-chart-line"></i> Become an expert</li>
-                    </ul>
-
-                    <a href="#" class="btn-format">Explore degrees</a>
-                </div> -->
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -1105,8 +994,10 @@
             <h2 class="cta-title">READY TO SPEAK TO US?</h2>
             <p class="cta-desc">Join the millions of people who are transforming their lives through education.</p>
             <div style="display: flex; gap: 16px; justify-content: center;">
-                <button class="btn btn-primary" style="padding: 14px 32px; font-size: 1.1rem;">Explore Student Solutions</button>
-                <button class="btn btn-outline" style="padding: 14px 32px; font-size: 1.1rem;">Explore Business Solutions</button>
+                <button class="btn btn-primary" style="padding: 14px 32px; font-size: 1.1rem;">Explore Student
+                    Solutions</button>
+                <button class="btn btn-outline" style="padding: 14px 32px; font-size: 1.1rem;">Explore Business
+                    Solutions</button>
             </div>
         </div>
     </section>
@@ -1204,7 +1095,7 @@
                     <h4>Legal</h4>
                     <ul>
                         <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
                         <li><a href="#">Accessibility</a></li>
                     </ul>
                 </div>

@@ -2,7 +2,7 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import University, HomeSlide, CategorySubject, Feature, TrendingCategory, TrendingTopic, PopularTopic, ZoomRegistration
+from .models import University, HomeSlide, CategorySubject, Feature, TrendingCategory, TrendingTopic, PopularTopic, ZoomRegistration, BusinessService, PrivacyPolicy
 from django.shortcuts import render
 
 def index(request):
@@ -37,7 +37,7 @@ def index(request):
     features = Feature.objects.all().order_by('order')
     trending_categories = TrendingCategory.objects.all().order_by('order')
     trending_topics = TrendingTopic.objects.all().order_by('order')
-    popular_topics = PopularTopic.objects.all().order_by('order')
+    business_services = BusinessService.objects.prefetch_related('features').all().order_by('order')
 
     return render(request, 'index.html', {
         'universities': universities, 
@@ -47,7 +47,8 @@ def index(request):
         'features': features,
         'trending_categories': trending_categories,
         'trending_topics': trending_topics,
-        'popular_topics': popular_topics
+        # 'popular_topics': popular_topics,
+        'business_services': business_services,
     })
 
 
@@ -62,6 +63,14 @@ def category_detail(request):
 def univer(request, pk):
     university = University.objects.prefetch_related('instructors', 'reviews').get(pk=pk)
     return render(request, 'univer.html', {'university': university})
+
+def business_service_detail(request, pk):
+    service = BusinessService.objects.prefetch_related('features').get(pk=pk)
+    return render(request, 'business_service_detail.html', {'service': service})
+
+def privacy_policy(request):
+    policy = PrivacyPolicy.objects.first()
+    return render(request, 'privacy_policy.html', {'policy': policy})
 
 @csrf_exempt
 def zoom_register(request):

@@ -940,6 +940,7 @@ header {
 
 .section-courses {
     padding: 80px 0;
+    background-color: #ffffff;
 }
 
 .section-header {
@@ -1582,8 +1583,8 @@ footer {
 /* Stats Section */
 .section-stats {
     padding: 80px 0;
-    background: var(--brand-dark);
-    color: white;
+    background: #ffffff;
+    color: var(--brand-dark);
     text-align: center;
 }
 
@@ -1598,7 +1599,8 @@ footer {
     font-weight: 800;
     color: var(--brand-main);
     margin-bottom: 8px;
-    background: linear-gradient(135deg, white 0%, var(--brand-main) 100%);
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-main) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -1611,7 +1613,7 @@ footer {
 /* Testimonials */
 .section-testimonials {
     padding: 100px 0;
-    background: var(--bg-surface);
+    background: #f4f5f7;
 }
 
 .testimonials-grid {
@@ -1926,7 +1928,7 @@ footer {
 /* Learning Formats Section */
 .section-learning-formats {
     padding: 100px 0;
-    background: white;
+    background: #f8f9fa;
 }
 
 .formats-header {
@@ -4206,8 +4208,8 @@ textarea.form-input {
 /* Value Props */
 .value-props {
     padding: 80px 0;
-    background: var(--brand-dark);
-    color: white;
+    background: #fdfbf7;
+    color: var(--brand-dark);
 }
 
 .props-grid {
